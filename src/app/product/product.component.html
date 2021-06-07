@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-12 col-6 col-lg-6">
+
+<div class="card">
+    <img src="assets/images/fish.jpg">
+    <div class="card-body text-center">
+        <div class="card-title">
+           {{product.title}}
+        </div>
+        <div class="card-text">
+            {{product.category}}
+        </div>
+        <hr>
+        <h6 class="mb-3"><span class="text-danger">{{product.price | currency:'INR'}}</span></h6>
+        <button class="btn btn-sm btn-primary" style="margin-right: 0.5rem !important;"><i class="bi bi-cart"> </i> Add to cart</button>
+        <button class="btn btn-sm btn-warning mr-2" >Buy</button>
+        <button class="btn btn-sm btn-light mr-1" style="float:right"> <i class="bi bi-heart text-danger"></i></button>
+    </div>
+</div>
+</div>
+</div>
+
