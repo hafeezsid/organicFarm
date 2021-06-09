@@ -1,8 +1,6 @@
-<div class="row">
-    <div class="col-12 col-6 col-lg-6">
 
-<div class="card">
-    <img src="assets/images/fish.jpg">
+<div class="card" style="width: 18rem;border: 0.5px solid black;">
+    <img src="{{product.image}}" class="card-img-top img-fluid">
     <div class="card-body text-center">
         <div class="card-title">
            {{product.title}}
@@ -11,12 +9,13 @@
             {{product.category}}
         </div>
         <hr>
-        <h6 class="mb-3"><span class="text-danger">{{product.price | currency:'INR'}}</span></h6>
+        <h2 class="mb-3"><span class="text-danger">{{product.price | currency:'INR'}}</span></h2 >
         <button class="btn btn-sm btn-primary" style="margin-right: 0.5rem !important;"><i class="bi bi-cart"> </i> Add to cart</button>
         <button class="btn btn-sm btn-warning mr-2" >Buy</button>
-        <button class="btn btn-sm btn-light mr-1" style="float:right"> <i class="bi bi-heart text-danger"></i></button>
+        <button (click)="toggleWishList()"
+        class="btn btn-sm btn-light material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to wishlist" style="float:right">
+             <i [ngClass]="{'bi':true, 'bi-heart':aWishList,'bi-heart-fill':rWishList, 'text-danger':true }" > </i></button>
     </div>
 </div>
-</div>
-</div>
+
 

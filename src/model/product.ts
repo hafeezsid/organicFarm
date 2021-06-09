@@ -13,6 +13,6 @@ export class Product{
             this.price=price;
             this.category=category;
             this.description=description;
-            this.image;
+            this.image=image;
     }
 }
