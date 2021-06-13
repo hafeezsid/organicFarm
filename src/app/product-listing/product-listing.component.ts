@@ -26,7 +26,7 @@ export class ProductListingComponent implements OnInit {
       Breakpoints.XLarge
     ]).subscribe( (state: BreakpointState) => {
       if (state.breakpoints[Breakpoints.XSmall]) {
-           this.cols=2;
+           this.cols=1;
       }
       if (state.breakpoints[Breakpoints.Small]) {
            console.log( 'Matches Small viewport');

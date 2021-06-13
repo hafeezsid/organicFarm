@@ -6,10 +6,11 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title text-center">Login</h2>
-                    <form method="POST" class="my-login-validation" novalidate="">
+                    <form (ngSubmit)="login()" #f="ngForm" class="my-login-validation" novalidate>
                         <div class="form-group form-floating">
-                            <input id="email" type="email" class="form-control" name="email"
-                             value="" required placeholder="Email" autofocus>
+                            <input id="username" type="email" class="form-control" 
+                            name="username" ngModel [(ngModel)]="username" #userna="ngModel"
+                            value="" required placeholder="Username" autofocus>
                             <label for="floatingInput">Email address</label>
                             <div class="invalid-feedback">
                                 Email is invalid
@@ -18,7 +19,9 @@
 
                         <div class="form-group  form-floating mt-3">
                             
-                            <input id="password" type="password" class="form-control" name="password" placeholder="Password" required data-eye>
+                            <input id="password" type="password" class="form-control" 
+                            name="password" ngModel #passwrd="ngModel" [(ngModel)]="password" 
+                            placeholder="Password" required data-eye>
                             <label for="floatingPassword">Password</label>
                             <div class="invalid-feedback">
                                 Password is required

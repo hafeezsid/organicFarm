@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     FilterComponent,
     ProductListingComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminMainComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     MatGridListModule,
     MatCardModule,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
