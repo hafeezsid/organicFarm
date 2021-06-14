@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { LocalstorageService } from '../localstorage.service';
 import { TokenService } from '../token.service';
@@ -12,6 +13,8 @@ import { TokenService } from '../token.service';
 export class LoginComponent implements OnInit {
   username:string;
   password:string;
+  loginStatus$= new BehaviorSubject<boolean>(null);
+
   constructor(private authService:AuthenticationService, 
     private route:Router,private tokenService:TokenService,
     private lsSerivice:LocalstorageService) { }
@@ -24,14 +27,7 @@ export class LoginComponent implements OnInit {
     console.log(this.password);
     this.authService.authenticate(this.username,this.password).subscribe(
       res=>{
-        this.lsSerivice.removeItem("token-id");
-        this.lsSerivice.set("token-id",res.token);
-        this.tokenService.setRawToken(res.token);
         console.log(res);
-        for(let claims of this.tokenService.getUserClaims()){
-          console.log(`claims ${claims['authority']}`);
-        }
-        
         this.route.navigate(['/admin']);
       },
       (error)=>{

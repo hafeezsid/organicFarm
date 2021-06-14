@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-admin-main',
@@ -10,6 +11,15 @@ export class AdminMainComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  @ViewChild('sidenav') sidenav: MatSidenav;
+
+  reason = '';
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
   }
 
 }

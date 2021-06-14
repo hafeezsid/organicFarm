@@ -9,9 +9,11 @@ export class TokenService {
   decodedToken:{ [key: string]: string };
   helper:any;
   rowToken:string;
+  roles:any[];
   constructor(private lsService:LocalstorageService) {
     this.helper = new JwtHelperService();
     this.rowToken=this.lsService.get("token-id");
+    this.roles=[];
    }
    setRawToken(token){
     this.rowToken=token;
@@ -23,11 +25,23 @@ export class TokenService {
   }
   getUserFromToken(){
     this.getDecodedToken()
-    return this.decodedToken?this.decodedToken.displayName:null;
+    return this.decodedToken?this.decodedToken.sub:null;
   }
   getUserClaims(){
-    this.getDecodedToken()
-    return this.decodedToken?this.decodedToken.authorities:null;
+    if(this.getDecodedToken())
+      return this.decodedToken.authorities;
+     else{
+       null;
+     }
+  }
+  getUserClaimsMap(){
+    if(this.getUserClaims()){
+      this.roles=[];
+    for(let claim of this.getUserClaims()){
+      this.roles.push(claim['authority']);
+    }
+  }
+    return this.roles
   }
   getExpirationTime()
   {

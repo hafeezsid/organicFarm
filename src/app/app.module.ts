@@ -16,7 +16,11 @@ import {LayoutModule} from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
-import { AdminMainComponent } from './admin/admin-main/admin-main.component';
+import { AdminMainComponent } from './system_admin/admin-main/admin-main.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { TopHeaderComponent } from './top-header/top-header.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { AdminMainComponent } from './admin/admin-main/admin-main.component';
     ProductListingComponent,
     LoginComponent,
     RegisterComponent,
-    AdminMainComponent
+    AdminMainComponent,
+    TopHeaderComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,8 @@ import { AdminMainComponent } from './admin/admin-main/admin-main.component';
     MatCardModule,
     LayoutModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
