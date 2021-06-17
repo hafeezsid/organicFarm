@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(){
+  login(form){
     console.log(this.username);
     console.log(this.password);
     this.authService.authenticate(this.username,this.password).subscribe(

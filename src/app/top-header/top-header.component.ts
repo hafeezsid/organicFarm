@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler/src/ml_parser/lexer';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/model/User';
 import { AuthenticationService } from '../authentication.service';
@@ -12,6 +12,7 @@ import { TokenService } from '../token.service';
 })
 export class TopHeaderComponent implements OnInit {
   linkName:string;
+  @ViewChild('navBar') navbar: ElementRef;
   linkUrl:string;
   urlList:any[]=[{name:"Home",url:"home"}];
   loginStatus$: Observable<boolean>;
@@ -48,6 +49,16 @@ export class TopHeaderComponent implements OnInit {
      }
    )
   }
-  
+
+  /*@HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event) {
+    console.log("Scroll Event");
+    var sticky=this.navbar.nativeElement.offsetTop;
+    if (window.pageYOffset >= sticky) {
+      this.navbar.nativeElement.classList.add("sticky")
+    } else {
+      this.navbar.nativeElement.classList.remove("sticky");
+    }
+  }*/
 
 }

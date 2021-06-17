@@ -18,8 +18,13 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AdminMainComponent } from './system_admin/admin-main/admin-main.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TopHeaderComponent } from './top-header/top-header.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FooterComponent } from './footer/footer.component';
+import { StickyNavModule } from 'ng2-sticky-nav'
+import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
+import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 
 
 @NgModule({
@@ -33,7 +38,10 @@ import { LogoutComponent } from './logout/logout.component';
     RegisterComponent,
     AdminMainComponent,
     TopHeaderComponent,
-    LogoutComponent
+    LogoutComponent,
+    FooterComponent,
+    RegistrationConfirmationComponent,
+    AccountConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,9 @@ import { LogoutComponent } from './logout/logout.component';
     LayoutModule,
     FormsModule,
     HttpClientModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
+    StickyNavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

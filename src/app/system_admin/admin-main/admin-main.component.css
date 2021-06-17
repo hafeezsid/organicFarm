@@ -1,6 +1,21 @@
 .admin-menu{
     display: flex;
     flex-direction: column;
-    height: 100%;
 
 }
+.example-container {
+    margin: 2px auto;
+    background-color: whitesmoke;
+    color: black;
+    padding: 0;
+}
+mat-drawer{
+    background-color: whitesmoke;
+    }
+
+    img{
+        max-height: 100px;
+        max-width: 100px;
+        
+    }
+  

@@ -1,1 +1,89 @@
-<p>register works!</p>
+<div class="container-wrapper"> 
+   
+    <div class="container register-form">
+        <div class="row">
+            <div class="col-12">
+                
+                <div class="card register-form-wrapper" >
+                    
+                    <div class="card-title text-info text-center p-2 mt-5" style="font-size: 25px;font-weight: 500;">Register</div>
+                    <div class="card-body">
+                        <form class="m-3" #f="ngForm" (ngSubmit)="register(f)" novalidate>
+                            <div class="form-group">
+                                <label for="First Name" >First Name</label>
+                                <input type="input" class="form-control" name="firstName" 
+                                    [(ngModel)]="user.firstName" ngModel
+                                #firstName="ngModel" required >
+                                <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                                    <pre class="text-danger">First name is required</pre> 
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="First Name" >last Name</label>
+                                <input type="input" class="form-control" name="lastName" 
+                                    [(ngModel)]="user.lastName" ngModel
+                                #lastName="ngModel" required >
+                                <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+                                    <pre class="text-danger">Last name is required</pre> 
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="Email" >Email</label>
+                                <input type="input" class="form-control" name="email" 
+                                    [(ngModel)]="user.email" ngModel
+                                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                                #email="ngModel" required >
+
+                                <div class="form-control-feedback" *ngIf="email.errors && (email?.dirty || email?.touched)">
+                                    <pre class="text-danger" *ngIf="email.errors.required && email?.touched">Email is required</pre>
+                                    <pre  class="text-danger" *ngIf="(email.errors.pattern && email?.touched)">Email is invalid</pre>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="Contact Number" >Contact Number</label>
+                                <input type="input" class="form-control" name="contactNumber" 
+                                    [(ngModel)]="user.contactNumber" ngModel
+                                    pattern="^[0-9]*$"
+                                #contactNumber="ngModel" required minlength="10" maxlength="10">
+                                <div class="form-control-feedback" *ngIf="contactNumber.errors && (contactNumber?.dirty || contactNumber?.touched)">
+                                    <pre class="text-danger" *ngIf="contactNumber.errors.required && contactNumber?.touched">Contact number is required</pre>
+                                    <pre class="text-danger" *ngIf="((contactNumber.errors.minlength||contactNumber.errors.maxlength) && contactNumber?.touched)">Contact number should be of 10 digit</pre>
+                                    <pre  class="text-danger" *ngIf="contactNumber.errors.pattern && contactNumber?.touched">Contact number is invalid</pre>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="First Name" >Password</label>
+                                <input type="password" class="form-control" name="password" 
+                                    [(ngModel)]="user.password" ngModel
+                                #password="ngModel" required >
+                                <div *ngIf="password.invalid && password?.touched">
+                                    <pre class="text-danger">Password is required</pre>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="Confirm Password" >Confirm Password</label>
+                                <input type="password" class="form-control" name="ccpass" 
+                                     ngModel
+                                #ccpass="ngModel" required >
+                                <div *ngIf="ccpass?.invalid  && (ccpass?.dirty || ccpass?.touched)">
+                                    <pre   class="text-danger">Confirm password is required</pre>
+                                </div>
+                                <div *ngIf=" ccpass.value!='' && !(password.value == ccpass.value) && (ccpass?.dirty || ccpass?.dirty)">
+                                    <pre  class="text-danger">Password donot match</pre>
+                                </div>
+                                
+                            </div>
+                            
+                            <button class="btn btn-primary mt-5" style="margin-right:5px;"
+                            [disabled]="(f.invalid || f.submitted || (ccpass.value!='' && !(password.value == ccpass.value) && (ccpass?.dirty || ccpass?.dirty)) )">
+                            <span *ngIf="submitted" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Register</button>
+                            <button class="btn btn-warning mt-5" [routerLink]='["/home"]'>Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

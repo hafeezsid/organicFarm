@@ -1,0 +1,19 @@
+.register-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form-wrapper{
+  width: 30rem;
+  font-size: larger;
+  font-weight: 500;
+   
+}
+
+@media only screen and (max-width: 600px) {
+    .register-form-wrapper{
+        width: 17rem;
+         
+      }
+  }

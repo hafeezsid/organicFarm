@@ -1,0 +1,33 @@
+.footer-container{
+ background-color: #111;
+ padding: 70px 0;   
+}
+h2,h3{
+    color:white;
+}
+h2{
+    font-size: 18px;
+}
+p{
+    color: #999;
+    line-height: 25px;
+}
+.segment-one p{
+    letter-spacing: 1px;
+}
+.segment-two ul{
+    padding-left: 2px;
+}
+.segment-two ul{
+   list-style: none;
+   line-height:43px;
+}
+.segment-two ul li a{
+    text-decoration: none;
+}
+.segment-three p{
+    letter-spacing: 1px;
+}
+ a i{
+     font-size: 40px;
+ }

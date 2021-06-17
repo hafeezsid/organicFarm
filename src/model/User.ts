@@ -5,6 +5,8 @@ export class  User{
     middleName:string;
     lastName:string;
     username:string;
+    password:string;
     email:string;
+    contactNumber:string;
     role:any[];
 }

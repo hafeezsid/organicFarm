@@ -1,0 +1,15 @@
+.confirm-box{
+    display: flex;
+    justify-content: center;
+    height: 300px;
+}
+p{
+    font-size: 20px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    p{
+        font-size: 16px;
+    }
+  }

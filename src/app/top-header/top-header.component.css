@@ -1,0 +1,22 @@
+
+
+.nav-item a {
+        color: black;
+        font-size: larger;
+        font-weight: 500;
+    }
+    nav{
+        z-index: 99999;
+        overflow: hidden;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+      }
+      .content {
+        padding: 16px;
+      }
+      .sticky + .content {
+        padding-top: 60px;
+      }

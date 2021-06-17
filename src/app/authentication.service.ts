@@ -56,6 +56,10 @@ export class AuthenticationService {
    
   }
 
+  public register(user:User){
+    return this.http.post<User>(`${environment.apiUrl}/register/user`,user);
+  }
+
   isUserLoggedIn()
   {
     if(this.storageService.get("token-id") && !this.tokenService.isTokenExpired())
