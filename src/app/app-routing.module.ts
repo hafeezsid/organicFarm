@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 import { AuthGuard } from './app-guards/auth.guard';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
 {path:'register',component:RegisterComponent},
 {path:'registrationConfirmation',component:RegistrationConfirmationComponent},
 {path:'accountConfirmation/:key',component:AccountConfirmationComponent},
+{path:'createProfile',component:CreateProfileComponent},
 {path:'logout',component:LogoutComponent},
 {path:'admin',component:AdminMainComponent,canActivate:[AuthGuard]},
 {path:'products', component:ProductComponent},

@@ -1,0 +1,276 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">              
+            <p class="text-center fs-5 mt-3">Personal Information</p>
+            <hr style="padding-bottom: 3px;">
+            <div class="card shadow-sm my-4 p-2">
+                <div class="card-title text-center">
+                    <h5 class=" mt-3">Basic Information</h5>
+                    <span class="text-muted text-center">
+                        Note: Make sure you fill information as per government ID proof. Failing to do so may result in application rejection.</span>
+                </div>
+                <div class="card-body">
+                    <form class="m-3" [formGroup]="profileForm" novalidate>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Display Name" >Display Name</label>
+                                    <input type="input" class="form-control" formControlName="firstName">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-6 mt-4">
+                                <div class="form-group">
+                                    <label for="Preferred IM/Chat" >Preferred IM/Chat</label>
+                                    <select class="form-select" class="form-control" formControlName="preferredChat"
+                                            aria-label="Default select example">
+                                    <option value="Skype">Skype</option>
+                                    <option value="Zoom">Zoom</option>
+                                    </select>                                  
+                                </div>
+                            </div>
+                            <div *ngIf="this.preferredChat.value=='Skype'" class="col-xs-12 col-sm-6 col-lg-6   mt-4">
+                                <div class="form-group">
+                                    <label for="Skype Id" >Skype ID</label>
+                                    <input type="input" class="form-control" formControlName="skypeId">
+                                                            
+                                </div>
+                            </div>
+                            <div *ngIf="this.preferredChat.value=='Zoom'" class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="Skype Id" >Zoom Meeting Link</label>
+                                    <input type="input" class="form-control" formControlName="zoomMeetingLink">
+                                                                
+                                </div>
+                            </div>
+                            <div *ngIf="this.preferredChat.value=='Zoom'" class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="Skype Id" >Personal Meeting ID</label>
+                                    <input type="input" class="form-control" formControlName="zoomMeetingId">
+                                                                
+                                </div>
+                            </div>
+                            <div  *ngIf="this.preferredChat.value=='Zoom'" class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="Skype Id" >Passcode</label>
+                                    <input type="input" class="form-control" formControlName="zoomPassCode">
+                                                                
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                            From  <span class="text-muted">
+                            Note: You can't change this information after you application is approved</span>
+                            </div>
+                          
+                            <div class="col-6  mt-4">
+                                <div class="form-group">
+                                    <label for="From Country" >Country</label>
+                                    <select class="form-select" class="form-control" formControlName="fromCountry"
+                                            aria-label="Default select example">
+                                    <option value="IND">India</option>
+                                    <option value="BAH">Bahrain</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="form-group">
+                                    <label for="From State" >State</label>
+                                    <select class="form-select" class="form-control" formControlName="fromState"
+                                            aria-label="Default select example">
+                                    <option value="UP">Uttar Pradesh</option>
+                                    <option value="MAH">Maharashtra</option>
+                                    </select>
+                                                            
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="form-group">
+                                    <label for="From City" >City</label>
+                                    <select class="form-select" class="form-control" formControlName="fromCity"
+                                            aria-label="Default select example">
+                                    <option value="LKO">Lucknow</option>
+                                    <option value="MUM">Mumbai</option>
+                                    </select>
+                                                            
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                Living In  
+                            </div>
+                              
+                            <div class="col-6  mt-4">
+                                <div class="form-group">
+                                    <label for="Living in Country" >Country</label>
+                                    <select class="form-select" class="form-control" formControlName="livingInCountry"
+                                            aria-label="Default select example">
+                                    <option value="IND">India</option>
+                                    <option value="BAH">Bahrain</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="form-group">
+                                    <label for="Living in State" >State</label>
+                                    <select class="form-select" class="form-control" formControlName="livingInState"
+                                            aria-label="Default select example">
+                                    <option value="UP">Uttar Pradesh</option>
+                                    <option value="MAH">Maharashtra</option>
+                                    </select>                     
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="form-group">
+                                    <label for="Living in City" >City</label>
+                                    <select class="form-select" class="form-control" formControlName="livingInCity"
+                                            aria-label="Default select example">
+                                    <option value="LKO">Lucknow</option>
+                                    <option value="MUM">Mumbai</option>
+                                    </select>
+                                                            
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <label for="Permanent Address" >Permanent Address</label>
+                                    <input type="input" class="form-control" formControlName="permAddress">
+                            </div>
+                            <div class="col-12 mt-4">
+                                <label for="Current Address" >Current Address</label>
+                                    <input type="input" class="form-control" formControlName="currentAddress">
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="row">
+                                    <label for="Living in City" >Date Of Birth</label>
+                                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                     <label for="dobYear" >Year</label>
+                                    <select class="form-select form-control" formControlName="birthYear" id="dobYear"
+                                           >
+                                    
+                                    <option *ngFor="let yr of birthYear" [value]="yr">{{yr}}</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="dobMonth" >Month</label>
+                                    <select class="form-select form-control" formControlName="birthMonth"
+                                    id="dobMonth"  (change)="generateDayOnMonthChange()"      
+                                    aria-label="Default select example" >
+                                    <option *ngFor="let mn of birthMonth" [value]="mn">{{mn}}</option>
+                                  
+                                    </select>
+                                     </div>
+                                     </div>
+                                     <div class="col-xs-12 col-sm-2 col-lg-2">
+                                     <div class="form-group">
+                                        <label for="day" >Day</label>
+                                    <select class="form-select" 
+                                    formControlName="birthDay"
+                                    id="day"        
+                                    aria-label="Default select example">
+                                  
+                                    <option *ngFor="let dy of birthDay" [value]="dy">{{dy}}</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                    </div>        
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-6 mt-4">
+                                    <div class="form-group">
+                                       
+                                        <label for="Gender" >Gender</label>
+                                        <select class="form-select" class="form-control"
+                                                formControlName="gender"
+                                                >
+                                        <option selected value="0">Select</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                        </select>
+                                                                
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    Languages
+                                </div>
+
+                                <div class="col-12" >
+                                    <div class="row" >
+                                        <div class="col-5 mt-4">
+                                            <div class="form-group" >
+                                                <label for="lang" >Language</label>
+                                                <select id="lang" class="form-select" class="form-control" formControlName="defLangaugeName"
+                                                        aria-label="Default select example">
+                                                <option value="ENG">English</option>
+                                                <option value="HIN">Hindi</option>
+                                                <option value="URD">Urdu</option>
+                                                <option value="FRH">French</option>
+                                                <option value="SPH">Spanish</option>
+                                                </select>                     
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-5 mt-4">
+                                            <div class="form-group">
+                                                <label for="level" >level</label>
+                                                <select id="level" class="form-select" class="form-control" formControlName="defLevel"
+                                                        aria-label="Default select example">
+                                                <option value="LKO">Basic</option>
+                                                <option value="MUM">Advance</option>
+                                                <option value="MUM">Native</option>
+                                                </select>
+                                                                
+                                             </div>  
+                                        </div>
+                                    </div>
+                                
+                                </div> 
+
+
+                                <div class="col-12 mt-1" formArrayName="languages">
+                                    
+                                    <div class="row" *ngFor="let lang of languages().controls; let i=index" [formGroupName]="i">
+                                        <div class="col-5 mt-3">
+                                            <div class="form-group" >
+                                                <label for="lang-{{i}}" >Language</label>
+                                                <select id="lang-{{i}}" class="form-select" class="form-control" formControlName="langaugeName"
+                                                        aria-label="Default select example">
+                                                <option value="LKO">Lucknow</option>
+                                                <option value="MUM">Mumbai</option>
+                                                </select>                     
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-5 mt-3">
+                                            <div class="form-group">
+                                                <label for="level-{{i}}" >level</label>
+                                                <select id="level-{{i}}" class="form-select" class="form-control" formControlName="level"
+                                                        aria-label="Default select example">
+                                                <option value="LKO">Lucknow</option>
+                                                <option value="MUM">Mumbai</option>
+                                                </select>
+                                                                
+                                             </div>  
+                                        </div>
+                                        <div class="col-1 mt-3">
+                                            <br>
+                                            <h1>
+                                                <a (click)="removeLanguage(i)" >
+                                                    <i class="bi bi-x text-danger"></i>
+                                                </a>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-app" (click)="addLanguage()">Add</button>
+                                </div> 
+                               
+                            
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <app-upload-profile></app-upload-profile>
+</div>

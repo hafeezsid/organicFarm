@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            
+            <h3>Basic Information</h3>
+            <hr class="mt-3"> 
+            <div class="card">
+                <div class="card-tille">
+                    <h4>Basic Information</h4>
+                </div>
+                <div class="card-body">
+                    <form class="m-3" #f="ngForm"  novalidate>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="First Name" >Display Name</label>
+                            <input type="input" class="form-control" name="firstName" 
+                               ngModel
+                            #firstName="ngModel" required >
+                            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                                <pre class="text-danger">Display name is required</pre> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="First Name" >Preferred IM/Chat</label>
+                            <select class="form-select" class="form-control" name="firstName" 
+                                 ngModel
+                            #firstName="ngModel" required >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            </select>
+                            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                                <pre class="text-danger">Select at least one IM/Chat option</pre> 
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

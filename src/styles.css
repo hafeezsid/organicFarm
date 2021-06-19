@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Poppins', sans-serif; }
+html, body { height: 100%;
+    font-family: 'Poppins', sans-serif !important;
+}
 .nav-item a{
     font-size: large;
+}
+
+.btn-app{
+    background-color: #ff9005 !important;
+    border-radius: 2px;
+    color: #ffff !important;
+}
+.btn-app:hover{
+    background-color: #d17400 !important;
 }
