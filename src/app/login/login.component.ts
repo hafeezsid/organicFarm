@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.username,this.password).subscribe(
       res=>{
         console.log(res);
-        this.route.navigate(['/admin']);
+        this.route.navigate(['/createProfile']);
       },
       (error)=>{
         console.log(error)

@@ -12,11 +12,13 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   
-  constructor(private storageService:LocalstorageService,private authenticationService:AuthenticationService) {}
+  constructor(private storageService:LocalstorageService
+    ,private authenticationService:AuthenticationService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let token=localStorage.getItem("token-id")
-    if(this.authenticationService.isUserLoggedIn)
+    console.log(token);
+    if(this.authenticationService.isUserLoggedIn())
     {
      request= request.clone({
         setHeaders: {

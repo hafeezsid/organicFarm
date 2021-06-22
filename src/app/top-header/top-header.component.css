@@ -2,13 +2,31 @@
 
 .nav-item a {
         color: black;
-        font-size: large;
+        font-size: 15px;
         font-weight: 400;
     }
 
-    .btn-outline-info{
+.btn-outline-dark{
         border-color: #ff9b1f !important;
+        border: 2px solid ;
         color: #ff9b1f !important;
+        font-weight: 500;
 
-    }
+}
+
+.btn-outline-dark:hover{
+    background-color: #ff9b1f !important;
+    color: #fff !important;
+
+}
+
+.btn-outline-dark:active
+ {
+    border-color: #ff9b1f !important;
+  }
     
+
+  .btn-outline-dark:focus
+ {
+    border-color: #ff9b1f !important;
+  }

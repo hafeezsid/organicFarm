@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,9 @@ import { AccountConfirmationComponent } from './account-confirmation/account-con
 import { ProfileComponent } from './profile/profile.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { UploadProfileComponent } from './upload-profile/upload-profile.component';
+import { JwtInterceptor } from './jwt.interceptor';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { GlobalErrorHandler } from './AppHandlers/GlobalErrorHandler';
 
 
 @NgModule({
@@ -64,7 +67,9 @@ import { UploadProfileComponent } from './upload-profile/upload-profile.componen
     StickyNavModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [/*{provide: ErrorHandler, useClass: GlobalErrorHandler},*/
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

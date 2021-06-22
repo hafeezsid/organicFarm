@@ -24,11 +24,11 @@
                                 <p class="text-muted fs-xm-app">Maximum size of 2MB</p>
                                 <div class="">
                                     <input hidden type='file' id="imageUpload"
-                                     accept=".png, .jpg, .jpeg" #fileInput 
+                                     accept=".png, .jpg, .jpeg" #fileInput formControlName="file"
                                      (change)="uploadFile($event)" />
                                 </div>
-                                <button class="btn btn-app btn-lg btn-block" (click)="fileInput.click()">Browse Image</button>
-                                <button class="btn btn-app btn-lg btn-block mx-2" (click)="savePicture()">Upload</button>
+                                <button class="btn btn-app btn btn-block" (click)="fileInput.click()">Browse Image</button>
+                                <button class="btn btn-app btn btn-block mx-2" [disabled]="this.profileUploadForm.invalid" (click)="savePicture()">Upload</button>
                             </div>
                                <!-- Submit Button -->
                        

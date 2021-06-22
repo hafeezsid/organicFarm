@@ -1,6 +1,6 @@
 
 
-<nav #navBar class="navbar navbar-expand-lg navbar-light bg-light shadow p-4 mb-2 bg-body " >
+<nav #navBar class="navbar navbar-expand-lg navbar-light bg-light shadow p-2 mb-2 bg-body " >
     <div class="container-fluid">
       <a class="navbar-brand js-scroll-trigger nav-color" href="#page-top">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +18,9 @@
             <a class="nav-link" [routerLink]='["/productListing"]'>Products</a>
           </li>
           <li class="nav-item" *ngIf="!(loginStatus$ | async)">
-            <button type="button" class="btn btn-lg btn-outline-info" [routerLink]='["/login"]' 
+            <button type="button" class="btn btn-outline-dark" [routerLink]='["/login"]' 
             *ngIf="!(loginStatus$ | async)" >Login</button>
-            <button type="button" class="btn btn-lg btn-outline-info" [routerLink]='["/register"]' 
+            <button type="button" class="btn btn-outline-dark" [routerLink]='["/register"]' 
             *ngIf="!(loginStatus$ | async)" >Register</button>
           </li>
 
