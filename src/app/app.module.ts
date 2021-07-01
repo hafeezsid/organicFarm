@@ -33,6 +33,7 @@ import { GlobalErrorHandler } from './AppHandlers/GlobalErrorHandler';
 import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EducationDialogComponent } from './appDialogs/education-dialog/education-dialog.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { EducationDialogComponent } from './appDialogs/education-dialog/educatio
     CreateProfileComponent,
     UploadProfileComponent,
     TeacherProfileComponent,
-    EducationDialogComponent
+    EducationDialogComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

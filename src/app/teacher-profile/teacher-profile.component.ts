@@ -18,16 +18,23 @@ export class TeacherProfileComponent implements OnInit {
  
   teacherProfForm:FormGroup;
   subList:any[];
-  birthYear:number[]=[];
-  birthMosinth:number[]=[];
-  birthDay:number[]=[];
   user:User;
-  education:Education;
+  education: Education;
   constructor(private fb:FormBuilder,private authService:AuthenticationService
     ,public dialog: MatDialog) {
   
     this.user=authService.currentUserValue;
     this.subList=subjectsList;
+    this.education={
+      from:0,
+      to:0,
+      institutionName:"",
+      major:"",
+      degree:"",
+      additionInfo:"",
+      attachmentDoc:null,
+      user:this.user
+    }
    }
 
   ngOnInit(): void {
@@ -64,7 +71,7 @@ export class TeacherProfileComponent implements OnInit {
   openEducationDialog()
   {
     const dialogRef = this.dialog.open(EducationDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: {education: this.education}
     });
 

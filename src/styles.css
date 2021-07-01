@@ -11,7 +11,8 @@ html, body { height: 100%;
     background-color: #ff9005 !important;
     border-radius: 2px;
     color: #ffff !important;
-    width: 200px;
+    width: fit-content;
+
 }
 .btn-app:hover{
     background-color: #d17400 !important;
@@ -20,6 +21,20 @@ html, body { height: 100%;
     
     font-size: 13px !important;
 }
+
+.btn-app:active {
+    background-color: #d17400 !important; ;
+  }
+    
+
+.btn-app:focus
+ {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ff9b1f !important;
+    background-color: #ff9b1f !important; ;
+  }
+
 
 @media screen and (max-width: 500px) {
 	
@@ -37,4 +52,8 @@ form{
    margin: 0 !important; 
 }
 }
+label{
+    font-size: 13px !important;
+}
+
 

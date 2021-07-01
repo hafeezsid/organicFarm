@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface Education{
     from:number;
     to:number;
@@ -5,5 +7,6 @@ export interface Education{
     major:string;
     degree:string;
     additionInfo:string;
+    user:User;
     attachmentDoc:File;
 }
