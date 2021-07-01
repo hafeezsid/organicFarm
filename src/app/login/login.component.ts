@@ -13,6 +13,7 @@ import { TokenService } from '../token.service';
 export class LoginComponent implements OnInit {
   username:string;
   password:string;
+  showSpinner:boolean;
   loginStatus$= new BehaviorSubject<boolean>(null);
 
   constructor(private authService:AuthenticationService, 
@@ -23,15 +24,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(form){
+    this.showSpinner=true;
     console.log(this.username);
     console.log(this.password);
     this.authService.authenticate(this.username,this.password).subscribe(
       res=>{
         console.log(res);
+        this.showSpinner=false;
         this.route.navigate(['/createProfile']);
       },
       (error)=>{
         console.log(error)
+        this.showSpinner=false;
       }
     )
     ;

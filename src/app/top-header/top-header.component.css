@@ -20,13 +20,14 @@
 
 }
 
-.btn-outline-dark:active
- {
-    border-color: #ff9b1f !important;
+.btn-outline-dark:active {
+    background-color: #d17400 !important; ;
   }
     
 
   .btn-outline-dark:focus
  {
+    outline: none;
+    box-shadow: none;
     border-color: #ff9b1f !important;
   }

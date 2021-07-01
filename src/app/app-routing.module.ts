@@ -11,6 +11,7 @@ import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 import { AdminMainComponent } from './system_admin/admin-main/admin-main.component';
+import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
 {path:'registrationConfirmation',component:RegistrationConfirmationComponent},
 {path:'accountConfirmation/:key',component:AccountConfirmationComponent},
 {path:'createProfile',component:CreateProfileComponent},
+{path:'teacherProfile',component:TeacherProfileComponent},
 {path:'logout',component:LogoutComponent},
 {path:'admin',component:AdminMainComponent,canActivate:[AuthGuard]},
 {path:'products', component:ProductComponent},

@@ -11,6 +11,7 @@ html, body { height: 100%;
     background-color: #ff9005 !important;
     border-radius: 2px;
     color: #ffff !important;
+    width: 200px;
 }
 .btn-app:hover{
     background-color: #d17400 !important;
@@ -19,3 +20,21 @@ html, body { height: 100%;
     
     font-size: 13px !important;
 }
+
+@media screen and (max-width: 500px) {
+	
+.btn-app{
+    background-color: #ff9005 !important;
+    border-radius: 2px;
+    font-size: smaller;
+    color: #ffff !important;
+    width: 145px;
+}
+.card-body{
+    padding:0 !important;
+}
+form{
+   margin: 0 !important; 
+}
+}
+

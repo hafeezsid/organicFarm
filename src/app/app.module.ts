@@ -22,7 +22,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TopHeaderComponent } from './top-header/top-header.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FooterComponent } from './footer/footer.component';
-import { StickyNavModule } from 'ng2-sticky-nav'
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -31,6 +30,9 @@ import { UploadProfileComponent } from './upload-profile/upload-profile.componen
 import { JwtInterceptor } from './jwt.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { GlobalErrorHandler } from './AppHandlers/GlobalErrorHandler';
+import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EducationDialogComponent } from './appDialogs/education-dialog/education-dialog.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { GlobalErrorHandler } from './AppHandlers/GlobalErrorHandler';
     AccountConfirmationComponent,
     ProfileComponent,
     CreateProfileComponent,
-    UploadProfileComponent
+    UploadProfileComponent,
+    TeacherProfileComponent,
+    EducationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +68,8 @@ import { GlobalErrorHandler } from './AppHandlers/GlobalErrorHandler';
     HttpClientModule,
     MatSidenavModule,
     MatSnackBarModule,
-    StickyNavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [/*{provide: ErrorHandler, useClass: GlobalErrorHandler},*/
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

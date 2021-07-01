@@ -1,6 +1,4 @@
-<div class="container-wrapper"> 
-   
-    <div class="container register-form">
+ <div class="container register-form">
         <div class="row">
             <div class="col-12">
                 
@@ -76,15 +74,14 @@
                                 
                             </div>
                             
-                            <button class="btn btn-primary mt-5" style="margin-right:5px;"
-                            [disabled]="(f.invalid || f.submitted || (ccpass.value!='' && !(password.value == ccpass.value) && (ccpass?.dirty || ccpass?.dirty)) )">
-                            <span *ngIf="submitted" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <button class="btn btn-primary mt-3" style="margin-right:5px;"
+                            [disabled]="(f.invalid || submitted || (ccpass.value!='' && !(password.value == ccpass.value) && (ccpass?.dirty || ccpass?.dirty)) )">
+                            <span *ngIf="showSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             Register</button>
-                            <button class="btn btn-warning mt-5" [routerLink]='["/home"]'>Cancel</button>
+                            <a class="btn btn-warning mt-3" [routerLink]='["/home"]'>Cancel</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

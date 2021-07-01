@@ -27,8 +27,8 @@
                                      accept=".png, .jpg, .jpeg" #fileInput formControlName="file"
                                      (change)="uploadFile($event)" />
                                 </div>
-                                <button class="btn btn-app btn btn-block" (click)="fileInput.click()">Browse Image</button>
-                                <button class="btn btn-app btn btn-block mx-2" [disabled]="this.profileUploadForm.invalid" (click)="savePicture()">Upload</button>
+                                <button class="btn btn-app cust-mar" (click)="fileInput.click()">Browse Image</button>
+                                <button class="btn btn-app cust-mar" [disabled]="this.profileUploadForm.invalid" (click)="savePicture()">Upload</button>
                             </div>
                                <!-- Submit Button -->
                        

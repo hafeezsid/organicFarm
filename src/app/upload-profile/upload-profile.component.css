@@ -11,3 +11,16 @@
     justify-content: flex-end;
     
 }
+.cust-mar{
+    margin-right: 5px;
+}
+@media screen and (max-width: 500px) {
+    .img-preview{
+        width: 127px;
+        height:127px;
+        
+    }
+    .cust-mar{
+        margin-top: 5px;
+    }
+}

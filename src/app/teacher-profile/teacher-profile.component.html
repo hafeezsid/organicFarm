@@ -1,0 +1,196 @@
+<div class="container">
+    <form class="" [formGroup]="teacherProfForm" novalidate (ngSubmit)="submitPersonalInfo()">
+        <div class="row">
+            <div class="col-12">              
+                <p class="text-center fs-5 mt-3">Teacher Profile</p>
+                <hr style="padding-bottom: 3px;">
+                <div class="card shadow-sm my-4 p-2">
+                    <div class="card-title text-center">
+                        <h5 class=" mt-3"> Teaching Subjects</h5>
+                        <span class="text-muted text-center fs-xm-app">
+                            Note: Make sure you only add those subjects and topics are you 100% capable of teaching. Your application will be accepted based on supporting documents that you upload for added subjects. </span>
+                    </div>
+                    <div class="card-body">
+                      
+                            <div class="row">
+                                
+                                    <div class="col-12 mt-4">
+                                        Subjects and Topics <span class="text-muted fs-xm-app">
+                                            Note: You can add atmost 5 subjects or topics</span>
+                                    </div>
+    
+                                    <div class="col-12" >
+                                        <div class="row" >
+                                            <div class="col-12 col-sm-5 mt-4">
+                                                <div class="form-group" >
+                                                    <label for="lang" >Subject or Topic</label>
+                                                    <select id="lang" class="form-select form-control" formControlName="defSubjectName"
+                                                            aria-label="Default select example">
+                                                            <option selected value="0">Select</option>
+                                                    <option *ngFor="let sub of subList" value="sub.code">{{sub.name}}</option>
+                                                    </select>                     
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-12 col-sm-5 mt-4">
+                                                <div class="form-group">
+                                                    <label for="level" >level</label>
+                                                    <select id="level" class="form-select form-control" formControlName="defLevel"
+                                                            aria-label="Default select example">
+                                                            <option selected value="0">Select</option>
+                                                    <option value="LKO">Primary - class 5</option>
+                                                    <option value="MUM">Class 6 - Class 8</option>
+                                                    <option value="MUM">Class 9 - Class 10</option>
+                                                    <option value="MUM">Class 10 - Class 12</option>
+                                                    <option value="MUM">High School</option>
+                                                    <option value="MUM">Intermediate</option>
+                                                    <option value="MUM">University 1st Year</option>
+                                                    <option value="MUM">University 2nd Year</option>
+                                                    <option value="MUM">University 3rd Year</option>
+                                                    <option value="MUM">University 4th Year</option>
+                                                    <option value="MUM">Post Graduation</option>
+                                                    <option value="MUM">Diploma</option>
+                                                    </select>
+                                                                    
+                                                 </div>  
+                                            </div>
+                                        </div>
+                                    
+                                    </div> 
+    
+    
+                                    <div class="col-12 mt-1" formArrayName="subjects">
+                                        
+                                        <div class="row" *ngFor="let lang of subjects().controls; let i=index" [formGroupName]="i">
+                                            <div class="col-12 col-sm-5 mt-3">
+                                                <div class="form-group" >
+                                                    <label for="sub-{{i}}" >Subjects or Topics</label>
+                                                    <select id="sub-{{i}}" class="form-select form-control" formControlName="subjectName"
+                                                            aria-label="Default select example">
+                                                            <option selected value="0">Select</option>
+                                                            <option *ngFor="let sub of subList" value="sub.code">{{sub.name}}</option>
+                                                    </select>                     
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-9 col-sm-5 mt-3">
+                                                <div class="form-group">
+                                                    <label for="level-{{i}}" >level</label>
+                                                    <select id="level-{{i}}" class="form-select form-control" formControlName="level"
+                                                            aria-label="Default select example">
+                                                            <option selected value="0">Select</option>
+                                                            <option value="LKO">Primary - class 5</option>
+                                                            <option value="MUM">Class 6 - Class 8</option>
+                                                            <option value="MUM">Class 9 - Class 10</option>
+                                                            <option value="MUM">Class 10 - Class 12</option>
+                                                            <option value="MUM">High School</option>
+                                                            <option value="MUM">Intermediate</option>
+                                                            <option value="MUM">University 1st Year</option>
+                                                            <option value="MUM">University 2nd Year</option>
+                                                            <option value="MUM">University 3rd Year</option>
+                                                            <option value="MUM">University 4th Year</option>
+                                                            <option value="MUM">Post Graduation</option>
+                                                            <option value="MUM">Diploma</option>
+                                                    </select>
+                                                                    
+                                                 </div>  
+                                            </div>
+                                            <div class="col-1 mt-3">
+                                                <br>
+                                                <h1>
+                                                    <a (click)="removeLanguage(i)" >
+                                                        <i class="bi bi-x text-danger"></i>
+                                                    </a>
+                                                </h1>
+                                            </div>
+                                        </div>
+    
+                                        <button class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage()">Add</button>
+                                    </div> 
+                                   
+                                
+                            </div>
+                       
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">              
+                 <div class="card shadow-sm my-4 p-2">
+                    <div class="card-title text-center">
+                        <h5 class=" mt-3"> Tell us something about yourself</h5>
+                        <span class="text-muted text-center fs-xm-app">
+                            Note: This information will be shown to students when they will view your profile for booking. </span>
+                    </div>
+                    <div class="card-body">
+                      
+                            <div class="row">
+                                
+                                    <div class="col-12 mt-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">About Me</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <span class="text-muted" style="font-size: x-small; float: right">Maximum words - 1000</span>  
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Teaching Experience and style</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <span class="text-muted" style="font-size: x-small; float: right">Maximum words - 1000</span>  
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Other Information (Optional)</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <span class="text-muted" style="font-size: x-small; float: right">Maximum words - 1000</span>  
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                       
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">              
+                 <div class="card shadow-sm my-4 p-2">
+                    <div class="card-title text-center">
+                        <h5 class=" mt-3"> Education and Experience</h5>
+                        <span class="text-muted text-center fs-xm-app">
+                            Note: Please upload relevant documents showing your training or experience as a teacher.
+                            Uploaded files are ONLY accessible to staff. </span>
+                    </div>
+                    <div class="card-body">
+                      
+                            <div class="row">
+                                <div class="col-12 mt-4">
+                                    Education
+                                </div>
+                                    <div class="col-12 mt-4">
+                                        
+                                        <div class="form-group">
+                                             
+                                        </div>
+                                        <button class="btn btn-sm btn-app" 
+                                        style="width: fit-content;" (click)="openEducationDialog()">
+                                        Add</button>
+                                    </div>
+                                    
+                                
+                            </div>
+                       
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <button class="btn btn-app" type="submit" style="width: fit-content;" [disabled]="teacherProfForm.invalid">Save and Continue</button>
+            </div>
+        </div>
+    </form>
+    </div>

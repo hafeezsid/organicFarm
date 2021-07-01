@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/model/User';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-create-profile',
@@ -11,38 +13,40 @@ export class CreateProfileComponent implements OnInit {
   birthYear:number[]=[];
   birthMonth:number[]=[];
   birthDay:number[]=[];
-  constructor(private fb:FormBuilder) {
+  user:User;
+  constructor(private fb:FormBuilder,private authService:AuthenticationService) {
     
     this.generateYear();
     this.generateMonth();
     this.generateDay();
+    this.user=authService.currentUserValue;
    }
 
   ngOnInit(): void {
     
     this.profileForm=this.fb.group({
-      displayName:[''],
-      preferredChat:[''],
+      displayName:['',[Validators.maxLength(50),Validators.required]],
+      preferredChat:['',[Validators.required]],
       skypeId:[''],
       zoomMeetingLink:[''],
       zoomMeetingId:[''],
       zoomPassCode:[''],
-      fromCountry:[''],
-      fromState:[''],
-      fromCity:[''],
-      livingInCountry:[''],
-      livingInState:[''],
-      livingInCity:[''],
-      firstName:[''],
-      lastName:[''],
-      birthYear:[''],
-      birthMonth:[''],
-      birthDay:[''],
-      gender:[''],
+      fromCountry:['',[Validators.required]],
+      fromState:['',[Validators.required]],
+      fromCity:['',[Validators.required]],
+      livingInCountry:['',[Validators.required]],
+      livingInState:['',[Validators.required]],
+      livingInCity:['',[Validators.required]],
+      firstName:[this.user.firstName,[Validators.required]],
+      lastName:[this.user.lastName],
+      birthYear:['',[Validators.required]],
+      birthMonth:['',[Validators.required]],
+      birthDay:['',[Validators.required]],
+      gender:['',[Validators.required]],
       currentAddress:['',[Validators.maxLength(200),Validators.required]],
       permAddress:['',[Validators.maxLength(200),Validators.required]],
-      defLangaugeName:[''],
-      defLevel:[''],
+      defLangaugeName:['',[Validators.required]],
+      defLevel:['',[Validators.required]],
       languages:this.fb.array([]),
       profilePic:[''],
     });
@@ -99,5 +103,10 @@ generateDayOnMonthChange(){
   for (var i = 1; i <=daysInMonth; i++) {
     this.birthDay.push(i);
   }
+}
+
+submitPersonalInfo()
+{
+
 }
 }

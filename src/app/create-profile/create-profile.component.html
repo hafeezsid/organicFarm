@@ -1,4 +1,5 @@
 <div class="container">
+<form class="" [formGroup]="profileForm" novalidate (ngSubmit)="submitPersonalInfo()">
     <div class="row">
         <div class="col-12">              
             <p class="text-center fs-5 mt-3">Personal Information</p>
@@ -10,7 +11,7 @@
                         Note: Make sure you fill information as per government ID proof. Failing to do so may result in application rejection.</span>
                 </div>
                 <div class="card-body">
-                    <form class="m-3" [formGroup]="profileForm" novalidate>
+                  
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -20,9 +21,10 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-6 mt-4">
                                 <div class="form-group">
-                                    <label for="Preferred IM/Chat" >Preferred IM/Chat</label>
-                                    <select class="form-select" class="form-control" formControlName="preferredChat"
-                                            aria-label="Default select example">
+                                    <label for="prefChat" >Preferred IM/Chat</label>
+                                    <select class="form-control form-select-sm" 
+                                    formControlName="preferredChat"
+                                            id="prefChat" >
                                     <option value="Skype">Skype</option>
                                     <option value="Zoom">Zoom</option>
                                     </select>                                  
@@ -64,7 +66,7 @@
                             <div class="col-6  mt-4">
                                 <div class="form-group">
                                     <label for="From Country" >Country</label>
-                                    <select class="form-select" class="form-control" formControlName="fromCountry"
+                                    <select class="form-select-sm form-control" formControlName="fromCountry"
                                             aria-label="Default select example">
                                     <option value="IND">India</option>
                                     <option value="BAH">Bahrain</option>
@@ -75,7 +77,7 @@
                             <div class="col-6 mt-4">
                                 <div class="form-group">
                                     <label for="From State" >State</label>
-                                    <select class="form-select" class="form-control" formControlName="fromState"
+                                    <select class="form-select-sm form-control" formControlName="fromState"
                                             aria-label="Default select example">
                                     <option value="UP">Uttar Pradesh</option>
                                     <option value="MAH">Maharashtra</option>
@@ -86,7 +88,7 @@
                             <div class="col-6 mt-4">
                                 <div class="form-group">
                                     <label for="From City" >City</label>
-                                    <select class="form-select" class="form-control" formControlName="fromCity"
+                                    <select class="form-select-sm form-control" formControlName="fromCity"
                                             aria-label="Default select example">
                                     <option value="LKO">Lucknow</option>
                                     <option value="MUM">Mumbai</option>
@@ -101,7 +103,7 @@
                             <div class="col-6  mt-4">
                                 <div class="form-group">
                                     <label for="Living in Country" >Country</label>
-                                    <select class="form-select" class="form-control" formControlName="livingInCountry"
+                                    <select class="form-select-sm form-control" formControlName="livingInCountry"
                                             aria-label="Default select example">
                                     <option value="IND">India</option>
                                     <option value="BAH">Bahrain</option>
@@ -112,7 +114,7 @@
                             <div class="col-6 mt-4">
                                 <div class="form-group">
                                     <label for="Living in State" >State</label>
-                                    <select class="form-select" class="form-control" formControlName="livingInState"
+                                    <select class="form-select-sm form-control" formControlName="livingInState"
                                             aria-label="Default select example">
                                     <option value="UP">Uttar Pradesh</option>
                                     <option value="MAH">Maharashtra</option>
@@ -122,7 +124,7 @@
                             <div class="col-6 mt-4">
                                 <div class="form-group">
                                     <label for="Living in City" >City</label>
-                                    <select class="form-select" class="form-control" formControlName="livingInCity"
+                                    <select class="form-select-sm form-control" formControlName="livingInCity"
                                             aria-label="Default select example">
                                     <option value="LKO">Lucknow</option>
                                     <option value="MUM">Mumbai</option>
@@ -180,7 +182,7 @@
                                     <div class="form-group">
                                        
                                         <label for="Gender" >Gender</label>
-                                        <select class="form-select" class="form-control"
+                                        <select class="form-select form-control"
                                                 formControlName="gender"
                                                 >
                                         <option selected value="0">Select</option>
@@ -199,7 +201,7 @@
                                         <div class="col-5 mt-4">
                                             <div class="form-group" >
                                                 <label for="lang" >Language</label>
-                                                <select id="lang" class="form-select" class="form-control" formControlName="defLangaugeName"
+                                                <select id="lang" class="form-select form-control" formControlName="defLangaugeName"
                                                         aria-label="Default select example">
                                                 <option value="ENG">English</option>
                                                 <option value="HIN">Hindi</option>
@@ -213,7 +215,7 @@
                                         <div class="col-5 mt-4">
                                             <div class="form-group">
                                                 <label for="level" >level</label>
-                                                <select id="level" class="form-select" class="form-control" formControlName="defLevel"
+                                                <select id="level" class="form-select form-control" formControlName="defLevel"
                                                         aria-label="Default select example">
                                                 <option value="LKO">Basic</option>
                                                 <option value="MUM">Advance</option>
@@ -262,15 +264,21 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-app" (click)="addLanguage()">Add</button>
+                                    <button class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage()">Add</button>
                                 </div> 
                                
                             
                         </div>
-                    </form>
+                   
                 </div>    
             </div>
         </div>
     </div>
     <app-upload-profile></app-upload-profile>
+    <div class="row">
+        <div class="col-12">
+        <button class="btn btn-app" type="submit" style="width: fit-content;" [disabled]="profileForm.invalid">Save and Continue</button>
+        </div>
+    </div>
+</form>
 </div>
