@@ -76,7 +76,8 @@
                             
                             <button class="btn btn-primary mt-3" style="margin-right:5px;"
                             [disabled]="(f.invalid || submitted || (ccpass.value!='' && !(password.value == ccpass.value) && (ccpass?.dirty || ccpass?.dirty)) )">
-                            <span *ngIf="showSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span *ngIf="showSpinner" class="spinner-border spinner-border-sm" 
+                            role="status" aria-hidden="true"></span>
                             Register</button>
                             <a class="btn btn-warning mt-3" [routerLink]='["/home"]'>Cancel</a>
                         </form>

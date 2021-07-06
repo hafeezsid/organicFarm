@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-12  mt-2">
         <label for="institute" >Attachments</label>
-        <p class="text-muted fs-xm-app">PDF, JPG formats only</p>
-          <p class="text-muted fs-xm-app">Maximum size of 2MB</p>
+        <p class="text-muted fs-xm-app m-0">PDF, JPG formats only</p>
+          <p class="text-muted fs-xm-app m-0">Maximum size of 2MB</p>
           <p class="text-muted fs-xm-app">Confidential with tutorPro</p>
      
           <input  type='file' id="imageUpload" hidden
@@ -10,7 +10,7 @@
           (change)="uploadFile($event)" />
         
   
-          <button class="btn btn-sm btn-app" (click)="fileInput.click()">Choose File</button>
+          <button type="button" class="btn btn-sm btn-app" (click)="fileInput.click()">Choose File</button>
           <label class="mx-2">{{fileUrl}}</label>
     </div>
 </div>

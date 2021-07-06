@@ -1,12 +1,15 @@
+import { Byte } from "@angular/compiler/src/util";
 import { User } from "./User";
 
 export interface Education{
-    from:number;
-    to:number;
+    tutorEducationId:number;
+    fromYear:number;
+    toYear:number;
     institutionName:string;
     major:string;
     degree:string;
     additionInfo:string;
-    user:User;
-    attachmentDoc:File;
+    documentType:string;
+    uploadStatus:boolean;
+    attachedDoc:Byte[]
 }

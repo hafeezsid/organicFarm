@@ -1,7 +1,12 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthenticationService } from 'src/app/authentication.service';
+import { MatSnackService } from 'src/app/services/mat-snack.service';
+import { TutorService } from 'src/app/services/tutor.service';
 import { Education } from 'src/model/education';
+import { User } from 'src/model/User';
 
 @Component({
   selector: 'app-education-dialog',
@@ -12,42 +17,84 @@ export class EducationDialogComponent implements OnInit {
 
   educationFormGroup:FormGroup;
   education:Education;
+  file:File;
   yearList:number[]=[];
+  user:User;
+  attachedFile:File;
+  submitted=false;
   constructor(public dialogRef: MatDialogRef<EducationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Education,private fb:FormBuilder) {
-      this.education=data;
-      this.generateYear();
+    @Inject(MAT_DIALOG_DATA) public data: Education,private fb:FormBuilder,
+    private tutorService:TutorService, private snackService:MatSnackService,
+    private authService:AuthenticationService) {
+      //this.education=data.education;
+      console.log(JSON.stringify(this.education));
+      
      }
 
   ngOnInit(): void {
     this.educationFormGroup=this.fb.group({
-      fromYear:['',[Validators.required]],
-      toYear:['',[Validators.required]],
-      institute:['',[Validators.required]],
-      major:['',[Validators.required]],
-      degree:['',[Validators.required]],
-      decs:['',],
+      fromYear:[this.data.fromYear,[Validators.required]],
+      toYear:[this.data.toYear,[Validators.required]],
+      institute:[this.data.institutionName,[Validators.required]],
+      major:[this.data.major,[Validators.required]],
+      degree:[this.data.degree,[Validators.required]],
+      desc:[this.data.additionInfo,],
     });
+    this.user=this.authService.currentUserValue;
+    console.log(JSON.stringify(this.education));
   }
-  onNoClick(){
 
+  get f()
+  {
+    return this.educationFormGroup.controls;
+  }
+
+  onNoClick(){
+    this.dialogRef.close();
   }
   submitEducation()
   {
-    
+    this.submitted=true;
+    if(this.educationFormGroup.invalid)
+    {
+      this.submitted=false;
+      return ;
+    }
+      this.education={
+        tutorEducationId:0,
+        fromYear:this.f.fromYear.value,
+        toYear:this.f.toYear.value,
+        institutionName:this.f.institute.value,
+        major:this.f.major.value,
+        degree:this.f.degree.value,
+        additionInfo:this.f.desc.value,
+        uploadStatus:false,
+        attachedDoc:[],
+        documentType:""
+      }
+      
+    this.tutorService.saveEducationDetails(this.education,this.attachedFile).subscribe(
+      res=>{
+        console.log("Data saved Successfully");
+        this.education.uploadStatus=true;
+        console.log(this.education);
+        this.dialogRef.close({data:this.education});
+      },
+      error=>{
+        this.snackService.showErrorSnack("There was error in saving education details. Please try after sometime.");
+      }
+      
+    )
+    this.submitted=false;
+
   }
 
   uploadFileData(uploadedFile){
     console.log("Function called on file upload");
     console.log(uploadedFile);
+    this.attachedFile=uploadedFile;
+
   }
 
-  generateYear(){
-    let max=new Date().getFullYear();
-    var year = new Date().getFullYear();
-    this.yearList.push(year);
-    for (var i = year-1; i > year-80; i--) {
-      this.yearList.push(i);
-    } 
-  }
+  
 }

@@ -22,6 +22,11 @@ html, body { height: 100%;
     font-size: 13px !important;
 }
 
+.fs-xs-app{
+    
+    font-size: 11px !important;
+}
+
 .btn-app:active {
     background-color: #d17400 !important; ;
   }
@@ -41,9 +46,9 @@ html, body { height: 100%;
 .btn-app{
     background-color: #ff9005 !important;
     border-radius: 2px;
-    font-size: smaller;
+    font-size: xx-small;
     color: #ffff !important;
-    width: 145px;
+    width: fit-content;
 }
 .card-body{
     padding:0 !important;

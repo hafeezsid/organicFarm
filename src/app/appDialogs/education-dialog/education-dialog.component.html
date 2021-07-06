@@ -3,47 +3,52 @@
 <div mat-dialog-content>
   
     <div class="row">
-                <div class="col-xs-12 col-sm-6  mt-2">
+                <div class="col-6  mt-2">
                     <div class="form-group">
                      <label for="fromYear" >From</label>
-                    <select class="form-select form-control" formControlName="fromYear" id="fromYear" >     
-                    <option *ngFor="let yr of yearList" [value]="yr">{{yr}}</option>
-                    </select>
+                     <input type="input" class="form-control form-control-sm" 
+                     formControlName="fromYear" id="fromYear" >
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6  mt-2">
+                <div class="col-6  mt-2">
                     <div class="form-group">
                      <label for="toYear" >To</label>
-                    <select class="form-select form-control" formControlName="toYear" id="toYear" >     
-                    <option *ngFor="let yr of yearList" [value]="yr">{{yr}}</option>
-                    </select>
+                     <input type="input" class="form-control form-control-sm" formControlName="toYear" id="toYear" >     
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6  mt-2">
                     <div class="form-group">
                      <label for="institute" >Institution</label>
-                        <input type="input" class="form-control" formControlName="institute" id="institute" >     
+                        <input type="input" class="form-control form-control-sm" formControlName="institute" id="institute" >     
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 mt-2">
                     <div class="form-group">
                      <label for="major" >Major</label>
-                    <input type="input" class="form-control" formControlName="major" id="major" />     
+                    <input type="input" class="form-control form-control-sm" formControlName="major" id="major" />     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                     <label for="degree" >Degree</label>
+                    <input type="input" class="form-control form-control-sm" formControlName="degree" id="degree" />     
                     </div>
                 </div>
                 <div class="col-12  mt-2">
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Description (Optional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="decs" rows="3"></textarea>
-                    <span class="text-muted" style="font-size: x-small; float: right">Maximum words - 1000</span>  
+                    <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="desc" rows="3"></textarea>
+                    <span class="text-muted" style="font-size: x-small; float: right">Max characters - 1000</span>  
                 </div>
                 </div>
     </div> 
     <app-file-upload  (uploadedFileData) = "uploadFileData($event)"></app-file-upload>
 </div>
 <div mat-dialog-actions>
-  <button class="btn btn-sm btn-secondary " (click)="onNoClick()">Cancel</button>
+  <button type="button" class="btn btn-sm btn-secondary " (click)="onNoClick()">Cancel</button>
   <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
-  <button class="btn btn-sm btn-app mx-2">Submit</button>
+  <button class="btn btn-sm btn-app mx-2" [disabled]="educationFormGroup.invalid || submitted">
+    <span *ngIf="submitted" class="spinner-border spinner-border-sm" 
+    role="status" aria-hidden="true"></span>Submit</button>
 </div>
 </form>
