@@ -1,5 +1,4 @@
 import { Byte } from "@angular/compiler/src/util";
-import { User } from "./User";
 
 export interface Education{
     tutorEducationId:number;
@@ -8,7 +7,7 @@ export interface Education{
     institutionName:string;
     major:string;
     degree:string;
-    additionInfo:string;
+    additionalInfo:string;
     documentType:string;
     uploadStatus:boolean;
     attachedDoc:Byte[]

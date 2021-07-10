@@ -24,7 +24,8 @@ export class TokenService {
      return  this.decodedToken;
   }
   getUserFromToken(){
-    this.getDecodedToken()
+    this.getDecodedToken();
+    console.log(this.decodedToken?this.decodedToken.sub:null);
     return this.decodedToken?this.decodedToken.sub:null;
   }
   getUserClaims(){

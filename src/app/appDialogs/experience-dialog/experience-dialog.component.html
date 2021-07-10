@@ -1,0 +1,79 @@
+<h1 mat-dialog-title class="text-center">Experiences</h1>
+<form [formGroup]="experienceFormGroup" novalidate (ngSubmit)="submitExperience()" >
+<div mat-dialog-content>
+  
+    <div class="row">
+                <div class="col-6  mt-2">
+                    <div class="form-group">
+                     <label for="fromYear" >From</label>
+                     <input type="input" class="form-control form-control-sm" 
+                     formControlName="fromYear" id="fromYear" >
+                    </div>
+                </div>
+                <div class="col-6  mt-2">
+                    <div class="form-group">
+                     <label for="toYear" >To</label>
+                     <input type="input" class="form-control form-control-sm" formControlName="toYear" id="toYear" >     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6  mt-2">
+                    <div class="form-group">
+                     <label for="company" >Company</label>
+                        <input type="input" class="form-control form-control-sm" formControlName="company" id="company" >     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                     <label for="designation" >Designation</label>
+                    <input type="input" class="form-control form-control-sm" formControlName="designation" id="designation" />     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                        <label for="country" >Country</label>
+                        <select class="form-select-sm form-control" formControlName="country" id="country"
+                                aria-label="Default select example">
+                        <option value="IND">India</option>
+                        <option value="BAH">Bahrain</option>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                        <label for="state" >State</label>
+                        <select class="form-select-sm form-control" formControlName="state" id="state"
+                                aria-label="Default select example">
+                        <option value="UP">Uttar Pradesh</option>
+                        <option value="MAH">Maharashtra</option>
+                        </select>
+                                                
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                        <label for="city" >City</label>
+                        <select class="form-select-sm form-control" formControlName="city" id="city"
+                                aria-label="Default select example">
+                        <option value="LKO">Lucknow</option>
+                        <option value="MUM">Mumbai</option>
+                        </select>                                   
+                    </div>
+                </div>
+                <div class="col-12  mt-2">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description (Optional)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="desc" rows="3"></textarea>
+                    <span class="text-muted" style="font-size: x-small; float: right">Max characters - 1000</span>  
+                </div>
+                </div>
+    </div> 
+</div>
+<div mat-dialog-actions>
+  <button type="button" class="btn btn-sm btn-secondary " (click)="onNoClick()">Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+  <button class="btn btn-sm btn-app mx-2" [disabled]="experienceFormGroup.invalid || submitted">
+    <span *ngIf="submitted" class="spinner-border spinner-border-sm" 
+    role="status" aria-hidden="true"></span>Submit</button>
+</div>
+</form>

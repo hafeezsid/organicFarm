@@ -10,12 +10,11 @@
                 <form [formGroup]="profileUploadForm">
 
                     <div class="row">
-                            <div class="col-6 img-container">
+                            <div  class="col-6 img-container">
                                 <div class="img-preview img-fluid" id="imagePreview" 
-                                [style.backgroundImage]="'url('+ imageUrl +')'"></div>
+                                [style.backgroundImage]="'url('+ receivedImage +')'"></div>
                                 
                             </div>
-        
                             <!-- Upload image -->
                             <div class="col-6">
                                 <p>Edit Profile Picture</p>

@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -38,7 +37,7 @@ export class EducationDialogComponent implements OnInit {
       institute:[this.data.institutionName,[Validators.required]],
       major:[this.data.major,[Validators.required]],
       degree:[this.data.degree,[Validators.required]],
-      desc:[this.data.additionInfo,],
+      desc:[this.data.additionalInfo,],
     });
     this.user=this.authService.currentUserValue;
     console.log(JSON.stringify(this.education));
@@ -67,7 +66,7 @@ export class EducationDialogComponent implements OnInit {
         institutionName:this.f.institute.value,
         major:this.f.major.value,
         degree:this.f.degree.value,
-        additionInfo:this.f.desc.value,
+        additionalInfo:this.f.desc.value,
         uploadStatus:false,
         attachedDoc:[],
         documentType:""

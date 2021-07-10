@@ -27,6 +27,11 @@ html, body { height: 100%;
     font-size: 11px !important;
 }
 
+.fs-sm-app{
+    
+    font-size: 12px !important;
+}
+
 .btn-app:active {
     background-color: #d17400 !important; ;
   }
@@ -39,6 +44,20 @@ html, body { height: 100%;
     border-color: #ff9b1f !important;
     background-color: #ff9b1f !important; ;
   }
+
+label{
+    font-size: 13px !important;
+}
+
+option{
+    font-size: 11px !important;
+}
+
+select{
+    font-size: 13px !important;
+}
+
+
 
 
 @media screen and (max-width: 500px) {
@@ -57,8 +76,3 @@ form{
    margin: 0 !important; 
 }
 }
-label{
-    font-size: 13px !important;
-}
-
-

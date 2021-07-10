@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
+import { AcknowledgmentComponent } from './acknowledgment/acknowledgment.component';
 import { AuthGuard } from './app-guards/auth.guard';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { HomeComponent } from './home/home.component';
@@ -21,8 +22,9 @@ const routes: Routes = [
 {path:'register',component:RegisterComponent},
 {path:'registrationConfirmation',component:RegistrationConfirmationComponent},
 {path:'accountConfirmation/:key',component:AccountConfirmationComponent},
-{path:'createProfile',component:CreateProfileComponent},
-{path:'teacherProfile',component:TeacherProfileComponent},
+{path:'register/step1',component:CreateProfileComponent},
+{path:'register/step2',component:TeacherProfileComponent},
+{path:'register/final',component:AcknowledgmentComponent},
 {path:'logout',component:LogoutComponent},
 {path:'admin',component:AdminMainComponent,canActivate:[AuthGuard]},
 {path:'products', component:ProductComponent},

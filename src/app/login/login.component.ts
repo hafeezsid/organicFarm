@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       res=>{
         console.log(res);
         this.showSpinner=false;
-        this.route.navigate(['/createProfile']);
+        this.route.navigate(['/register/step1']);
       },
       (error)=>{
         console.log(error)

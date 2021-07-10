@@ -9,4 +9,10 @@ export class  User{
     email:string;
     contactNumber:string;
     role:any[];
+    userType:string;
+	isProfileApproved:string;
+	isRegFirstStepComplete:string;
+	isRegSecondStepComplete:string;
+	isRegFinalStepComplete:string;
+    
 }

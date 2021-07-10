@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Byte } from '@angular/compiler/src/util';
+import { ChangeDetectorRef, Component, EventEmitter,  ElementRef, OnInit, Output, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TutorService } from '../services/tutor.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,30 +10,40 @@ import { UserService } from '../services/user.service';
   templateUrl: './upload-profile.component.html',
   styleUrls: ['./upload-profile.component.css']
 })
-export class UploadProfileComponent implements OnInit {
+export class UploadProfileComponent implements OnInit,OnChanges {
 
-
+  @Output() uploadedFileData:EventEmitter<string> =new EventEmitter<string>();
   profileUploadForm:FormGroup;
   file:any;
   fileToUpload:File;
   imageUrl:any;
   reader:any; 
   @ViewChild('fileInput') el: ElementRef;
+  @Input() profilePicByte:Byte[];
+  receivedImage:any;
   editFile: boolean = true;
   removeUpload: boolean = false;
   submitted: boolean = false;
 
   constructor( public fb: FormBuilder,
     private cd: ChangeDetectorRef,private snackBar:MatSnackBar,
-    private userService:UserService) { 
-      
+    private tutorService:TutorService) { 
+      console.log(this.imageUrl);
     }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.receivedImage='data:image/jpeg;base64,' + this.profilePicByte;
+  }
 
   ngOnInit(): void {
     this.profileUploadForm=this.fb.group({
       file:['',[Validators.required]]
     })
+   
+
+    console.log(this.imageUrl);
   }
+
+
 
   uploadFile(event) {
    // HTML5 FileReader API
@@ -43,7 +55,7 @@ export class UploadProfileComponent implements OnInit {
 
       // When file uploads set it to file formcontrol
       this.reader.onload = () => {
-        this.imageUrl = this.reader.result;
+        this.receivedImage = this.reader.result;
         this.editFile = false;
         this.removeUpload = true;
     }
@@ -67,14 +79,14 @@ export class UploadProfileComponent implements OnInit {
   savePicture(){
     this.submitted = true;
       console.log(this.fileToUpload);
-      this.userService.uploadImage(this.fileToUpload).subscribe(
+      this.tutorService.uploadImage(this.fileToUpload).subscribe(
         (res)=>{
           this.snackBar.open("Your profile picture upload successfully","Close",
           {horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-success','text-light']});
-        
+          this.uploadedFileData.emit("true")
         },
         (error)=>{
-          this.snackBar.open(error.error['message'],"Close",{horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-danger','text-light']})
+          this.snackBar.open("Error occurred while uploading image","Close",{horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-danger','text-light']})
         }
       )
   }

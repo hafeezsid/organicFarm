@@ -16,12 +16,13 @@ export class AuthenticationService {
   loginStatus$: BehaviorSubject<boolean>;
   userSubject$: BehaviorSubject<User>;
   currentUser: Observable<User>;
-  user=new User();
+  user:User;
  
   constructor(private http:HttpClient,private storageService:LocalstorageService
     , private tokenService: TokenService ) { 
       if(this.isUserLoggedIn()){
-        this.userSubject$=new BehaviorSubject<User>(this.userInfoFromToken());
+      
+        this.userSubject$=new BehaviorSubject<User>(JSON.parse(this.storageService.get("currentUser")));
         this.currentUser=this.userSubject$.asObservable();
         this.loginStatus$=new BehaviorSubject<boolean>(true);
        }
@@ -47,10 +48,12 @@ export class AuthenticationService {
       map(res=>{
         this.storageService.removeItem("token-id");
         this.storageService.set("token-id",res.token);
+        this.storageService.set('currentUser', JSON.stringify(this.userInfoFromRespone(res)));
         this.tokenService.setRawToken(res.token);
         this.loginStatus$.next(true);
-        this.userSubject$.next(this.userInfoFromToken());
+        this.userSubject$.next(this.userInfoFromRespone(res));
         return res;
+        
       })
     );
    
@@ -71,7 +74,8 @@ export class AuthenticationService {
     return false;
   }
 
-  public userInfoFromToken():User{
+  public userInfoFromRespone(res):User{
+    this.user=res.user;
     this.user.username=this.tokenService.getUserFromToken();
     this.user.role=this.tokenService.getUserClaimsMap();
     return this.user;
@@ -88,6 +92,7 @@ export class AuthenticationService {
 logout()
 {
   this.storageService.removeItem("token-id");
+  this.storageService.removeItem("currentUser");
   this.loginStatus$.next(false);
   this.userSubject$.next(null);
 }

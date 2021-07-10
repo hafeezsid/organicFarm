@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="" [formGroup]="teacherProfForm" novalidate (ngSubmit)="submitPersonalInfo()">
+    <form class="" [formGroup]="teacherProfForm" novalidate (ngSubmit)="submitProfileInfo()">
         <div class="row">
             <div class="col-12">              
                 <p class="text-center fs-5 mt-3">Teacher Profile</p>
@@ -24,10 +24,10 @@
                                             <div class="col-12 col-sm-5 mt-4">
                                                 <div class="form-group" >
                                                     <label for="lang" >Subject or Topic</label>
-                                                    <select id="lang" class="form-select form-control" formControlName="defSubjectName"
+                                                    <select id="lang" class="form-control form-select-sm " formControlName="defSubjectName"
                                                             aria-label="Default select example">
                                                             <option selected value="0">Select</option>
-                                                    <option *ngFor="let sub of subList" value="sub.code">{{sub.name}}</option>
+                                                    <option *ngFor="let sub of subList" [value]="sub.code">{{sub.name}}</option>
                                                     </select>                     
                                                 </div>
                                                 
@@ -35,12 +35,12 @@
                                             <div class="col-12 col-sm-5 mt-4">
                                                 <div class="form-group">
                                                     <label for="level" >level</label>
-                                                    <select id="level" class="form-select form-control" formControlName="defLevel"
+                                                    <select id="level" class="form-control form-select-sm " formControlName="defLevel"
                                                             aria-label="Default select example">
                                                             <option selected value="0">Select</option>
-                                                    <option value="LKO">Primary - class 5</option>
-                                                    <option value="MUM">Class 6 - Class 8</option>
-                                                    <option value="MUM">Class 9 - Class 10</option>
+                                                    <option value="P5">Primary - class 5</option>
+                                                    <option value="C6TO8">Class 6 - Class 8</option>
+                                                    <option value="C9TO10">Class 9 - Class 10</option>
                                                     <option value="MUM">Class 10 - Class 12</option>
                                                     <option value="MUM">High School</option>
                                                     <option value="MUM">Intermediate</option>
@@ -61,14 +61,14 @@
     
                                     <div class="col-12 mt-1" formArrayName="subjects">
                                         
-                                        <div class="row" *ngFor="let lang of subjects().controls; let i=index" [formGroupName]="i">
+                                        <div class="row" *ngFor="let lang of subjects.controls; let i=index" [formGroupName]="i">
                                             <div class="col-12 col-sm-5 mt-3">
                                                 <div class="form-group" >
                                                     <label for="sub-{{i}}" >Subjects or Topics</label>
-                                                    <select id="sub-{{i}}" class="form-select form-control" formControlName="subjectName"
+                                                    <select id="sub-{{i}}" class="form-control form-select-sm " formControlName="subjectName"
                                                             aria-label="Default select example">
                                                             <option selected value="0">Select</option>
-                                                            <option *ngFor="let sub of subList" value="sub.code">{{sub.name}}</option>
+                                                            <option *ngFor="let sub of subList" [value]="sub.code">{{sub.name}}</option>
                                                     </select>                     
                                                 </div>
                                                 
@@ -76,12 +76,12 @@
                                             <div class="col-9 col-sm-5 mt-3">
                                                 <div class="form-group">
                                                     <label for="level-{{i}}" >level</label>
-                                                    <select id="level-{{i}}" class="form-select form-control" formControlName="level"
+                                                    <select id="level-{{i}}" class="form-control form-select-sm " formControlName="level"
                                                             aria-label="Default select example">
                                                             <option selected value="0">Select</option>
-                                                            <option value="LKO">Primary - class 5</option>
-                                                            <option value="MUM">Class 6 - Class 8</option>
-                                                            <option value="MUM">Class 9 - Class 10</option>
+                                                            <option value="P5">Primary - class 5</option>
+                                                            <option value="C6TO8">Class 6 - Class 8</option>
+                                                            <option value="C9TO10">Class 9 - Class 10</option>
                                                             <option value="MUM">Class 10 - Class 12</option>
                                                             <option value="MUM">High School</option>
                                                             <option value="MUM">Intermediate</option>
@@ -98,17 +98,44 @@
                                             <div class="col-1 mt-3">
                                                 <br>
                                                 <h1>
-                                                    <a (click)="removeLanguage(i)" >
+                                                    <a (click)="removeSubject(i)" >
                                                         <i class="bi bi-x text-danger"></i>
                                                     </a>
                                                 </h1>
                                             </div>
                                         </div>
     
-                                        <button class="btn btn-sm btn-app" (click)="addSubject()">Add</button>
+                                        <button type="button" class="btn btn-sm btn-app" (click)="addSubject('','')">Add</button>
                                     </div> 
                                    
                                 
+                            </div>
+                       
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12"> 
+                <div class="card shadow-sm my-4 p-2">
+                    <div class="card-title text-center">
+                        <h5 class=" mt-3"> Teaching Rate</h5>
+                       <span class="text-muted text-center fs-xm-app">
+                            Tell us how much you charge for a class on a hourly basis</span>
+                    </div>
+                    <div class="card-body">
+                            <div class="row">     
+                                    <div class="col-12 mt-1">
+                                        <label>Hourly Rate </label> <span class="text-muted fs-xm-app">
+                                            Note: Enter amount as per Indian Rupee</span>
+                                    </div>
+    
+                                    <div class="col-12" >  
+                                                  <div class="form-group" >
+                                                    <input type="text" id="rate" 
+                                                    class="form-control form-control-sm" formControlName="hourlyRate">                  
+                                                    </div>
+                                    </div> 
                             </div>
                        
                     </div>    
@@ -130,21 +157,21 @@
                                     <div class="col-12 mt-4">
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">About Me</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="aboutMe" rows="3"></textarea>
                                             <span class="text-muted" style="font-size: x-small; float: right">Max characters - 1000</span>  
                                         </div>
                                     </div>
                                     <div class="col-12 mt-4">
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Teaching Experience and style</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="aboutTeachingExp" rows="3"></textarea>
                                             <span class="text-muted" style="font-size: x-small; float: right">Max characters - 1000</span>  
                                         </div>
                                     </div>
                                     <div class="col-12 mt-4">
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Other Information (Optional)</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="otherInfo"  rows="3"></textarea>
                                             <span class="text-muted" style="font-size: x-small; float: right">Max characters - 1000</span>  
                                         </div>
                                     </div>
@@ -170,22 +197,22 @@
                                 <div class="col-12 mt-4">
                                     Education
                                 </div>
-                                <div class="col-12 mt-4" formArrayName="educations">
+                                <div class="col-12 mt-3" formArrayName="educations">
                                         
                                         <div class="row" *ngFor="let lang of educations.controls; let i=index" [formGroupName]="i">
                                           
                                             <div class="col-9 col-sm-6">
                                               
-                                                <p class="m-0"> <span class="fs-xs-app" >{{lang.value.educationFromYear}}</span>
-                                                    <span class="fs-xs-app"> - {{lang.value.educationToYear}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">{{lang.value.educationInstitute}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">Degree: {{lang.value.educationDegree}}</span>
-                                                    <span class="fs-xs-app mx-2">Major: {{lang.value.educationMajor}}</span></p>
+                                                <p class="m-0"> <span class="fs-sm-app" >{{lang.value.educationFromYear}}</span>
+                                                    <span class="fs-sm-app"> - {{lang.value.educationToYear}}</span></p>
+                                                   <p class="m-0"><span class="fs-sm-app">{{lang.value.educationInstitute}}</span></p>
+                                                   <p class="m-0"><span class="fs-sm-app">Degree: {{lang.value.educationDegree}}</span>
+                                                    <span class="fs-sm-app mx-2">Major: {{lang.value.educationMajor}}</span></p>
                                                     <p *ngIf="lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
-                                                     <span class="fs-xs-app">Document Uploaded</span>
+                                                     <span class="fs-sm-app">Document Uploaded</span>
                                                 </p>
                                                 <p *ngIf="!lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
-                                                    <span class="fs-xs-app ">Document Not Uploaded</span>
+                                                    <span class="fs-sm-app">Document Not Uploaded</span>
                                            </p>
                                                
                                                     
@@ -197,32 +224,28 @@
                                             <hr>
                                         </div>
 
-                                        <button class="btn btn-sm btn-app" 
+                                        <button type="button" class="btn btn-sm btn-app" 
                                         style="width: fit-content;" (click)="openEducationDialog()">
                                         Add</button>
                                 </div>  
                                 <div class="col-12 mt-4">
                                     Experience
                                 </div>
-                                <div class="col-12 mt-4" formArrayName="educations">
+                                <div class="col-12 mt-3" formArrayName="experiences">
                                         
-                                        <div class="row" *ngFor="let lang of educations.controls; let i=index" [formGroupName]="i">
+                                        <div class="row" *ngFor="let lang of experiences.controls; let i=index" [formGroupName]="i">
                                           
                                             <div class="col-9 col-sm-6">
                                               
-                                                <p class="m-0"> <span class="fs-xs-app" >{{lang.value.educationFromYear}}</span>
-                                                    <span class="fs-xs-app"> - {{lang.value.educationToYear}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">{{lang.value.educationInstitute}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">Degree: {{lang.value.educationDegree}}</span>
-                                                    <span class="fs-xs-app mx-2">Major: {{lang.value.educationMajor}}</span></p>
-                                                    <p *ngIf="lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
-                                                     <span class="fs-xs-app">Document Uploaded</span>
+                                                <p class="m-0"> <span class="fs-sm-app" >{{lang.value.experienceFromYear}}</span>
+                                                    <span class="fs-sm-app"> - {{lang.value.experienceToYear}}</span>
                                                 </p>
-                                                <p *ngIf="!lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
-                                                    <span class="fs-xs-app ">Document Not Uploaded</span>
-                                           </p>
-                                               
-                                                    
+                                                   <p class="m-0"><span class="fs-sm-app">{{lang.value.experienceCompany}}</span></p>
+                                                   <p class="m-0"><span class="fs-sm-app">{{lang.value.experienceCity}}, {{lang.value.experienceState}}</span>
+                                                    <span class="fs-sm-app mx-1">
+                                                       {{lang.value.experienceCountry}}</span>
+                                                    </p>
+                                                 
                                             </div>
                                             <div class="col-3 col-sm-6">
                                                 <a><label><i class="bi bi-x text-danger fs-5"></i></label></a>
@@ -231,32 +254,30 @@
                                             <hr>
                                         </div>
 
-                                        <button class="btn btn-sm btn-app" 
+                                        <button class="btn btn-sm btn-app"  type="button"
                                         style="width: fit-content;" (click)="openExperienceDialog()">
                                         Add</button>
                                 </div> 
                                 <div class="col-12 mt-4">
-                                    Certificates (Optional)
+                                    Certificates
                                 </div>
-                                <div class="col-12 mt-4" formArrayName="educations">
+                                <div class="col-12 mt-3" formArrayName="certificates">
                                         
-                                        <div class="row" *ngFor="let lang of educations.controls; let i=index" [formGroupName]="i">
+                                        <div class="row" *ngFor="let lang of certificates.controls; let i=index" [formGroupName]="i">
                                           
                                             <div class="col-9 col-sm-6">
                                               
-                                                <p class="m-0"> <span class="fs-xs-app" >{{lang.value.educationFromYear}}</span>
-                                                    <span class="fs-xs-app"> - {{lang.value.educationToYear}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">{{lang.value.educationInstitute}}</span></p>
-                                                   <p class="m-0"><span class="fs-xs-app">Degree: {{lang.value.educationDegree}}</span>
-                                                    <span class="fs-xs-app mx-2">Major: {{lang.value.educationMajor}}</span></p>
-                                                    <p *ngIf="lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
-                                                     <span class="fs-xs-app">Document Uploaded</span>
-                                                </p>
-                                                <p *ngIf="!lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
-                                                    <span class="fs-xs-app ">Document Not Uploaded</span>
-                                           </p>
-                                               
-                                                    
+                                                    <p class="m-0"> 
+                                                    <span class="fs-sm-app" >{{lang.value.certificateYear}}</span>
+                                                    </p>
+                                                   <p class="m-0"><span class="fs-sm-app">{{lang.value.certificateName}}</span></p>
+                                                   <p class="m-0"><span class="fs-sm-app">{{lang.value.certificateProvider}}</span></p>
+                                                    <p *ngIf="lang.value.certificateUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
+                                                     <span class="fs-sm-app">Document Uploaded</span>
+                                                     </p>
+                                                    <p *ngIf="!lang.value.certificateUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
+                                                        <span class="fs-sm-app">Document Not Uploaded</span>
+                                                    </p>                                            
                                             </div>
                                             <div class="col-3 col-sm-6">
                                                 <a><label><i class="bi bi-x text-danger fs-5"></i></label></a>
@@ -265,20 +286,20 @@
                                             <hr>
                                         </div>
 
-                                        <button class="btn btn-sm btn-app" 
+                                        <button class="btn btn-sm btn-app"  type="button"
                                         style="width: fit-content;" (click)="openCertificateDialog()">
                                         Add</button>
                                 </div>  
                             </div>
-                       
+                    
                     </div>    
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-            <button class="btn btn-app" type="submit" style="width: fit-content;" [disabled]="teacherProfForm.invalid">Save and Continue</button>
+            <button class="btn btn-app" type="submit" style="width: fit-content;" >Save and Continue</button>
             </div>
         </div>
     </form>
-    </div>
+</div>

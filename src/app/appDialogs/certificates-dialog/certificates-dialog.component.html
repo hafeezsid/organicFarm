@@ -1,0 +1,43 @@
+<h1 mat-dialog-title class="text-center">Certificates</h1>
+<form [formGroup]="certificateFormGroup" novalidate (ngSubmit)="submitCertificate()" >
+<div mat-dialog-content>
+  
+    <div class="row">
+                <div class="col-6  mt-2">
+                    <div class="form-group">
+                     <label for="acquiredYear" >Acquired Year</label>
+                     <input type="input" class="form-control form-control-sm" 
+                     formControlName="acquiredYear" id="acquiredYear" >
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6  mt-2">
+                    <div class="form-group">
+                     <label for="certificateName" >Certificate Name</label>
+                        <input type="input" class="form-control form-control-sm" 
+                        formControlName="certificateName" id="certificateName" >     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                     <label for="provider" >Provider</label>
+                    <input type="input" class="form-control form-control-sm" formControlName="provider" id="provide" />     
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 mt-2">
+                    <div class="form-group">
+                     <label for="link" >Certificate Link (Optional)</label>
+                    <input type="input" class="form-control form-control-sm"
+                     formControlName="link" id="link" />     
+                    </div>
+                </div>
+    </div> 
+    <app-file-upload  (uploadedFileData) = "uploadFileData($event)"></app-file-upload>
+</div>
+<div mat-dialog-actions>
+  <button type="button" class="btn btn-sm btn-secondary " (click)="onNoClick()">Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+  <button class="btn btn-sm btn-app mx-2" [disabled]="certificateFormGroup.invalid || submitted">
+    <span *ngIf="submitted" class="spinner-border spinner-border-sm" 
+    role="status" aria-hidden="true"></span>Submit</button>
+</div>
+</form>

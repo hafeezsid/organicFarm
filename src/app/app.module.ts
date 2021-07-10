@@ -34,6 +34,9 @@ import { TeacherProfileComponent } from './teacher-profile/teacher-profile.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import { EducationDialogComponent } from './appDialogs/education-dialog/education-dialog.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ExperienceDialogComponent } from './appDialogs/experience-dialog/experience-dialog.component';
+import { CertificatesDialogComponent } from './appDialogs/certificates-dialog/certificates-dialog.component';
+import { AcknowledgmentComponent } from './acknowledgment/acknowledgment.component';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     UploadProfileComponent,
     TeacherProfileComponent,
     EducationDialogComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ExperienceDialogComponent,
+    CertificatesDialogComponent,
+    AcknowledgmentComponent
   ],
   imports: [
     BrowserModule,

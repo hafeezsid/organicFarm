@@ -16,13 +16,13 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="Display Name" >Display Name</label>
-                                    <input type="input" class="form-control" formControlName="firstName">
+                                    <input type="input" class="form-control form-control-sm" formControlName="displayName">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-6 mt-4">
                                 <div class="form-group">
                                     <label for="prefChat" >Preferred IM/Chat</label>
-                                    <select class="form-control form-select-sm" 
+                                    <select class="form-control form-select-sm"  data-live-search="true"
                                     formControlName="preferredChat"
                                             id="prefChat" >
                                     <option value="Skype">Skype</option>
@@ -33,7 +33,7 @@
                             <div *ngIf="this.preferredChat.value=='Skype'" class="col-xs-12 col-sm-6 col-lg-6   mt-4">
                                 <div class="form-group">
                                     <label for="Skype Id" >Skype ID</label>
-                                    <input type="input" class="form-control" formControlName="skypeId">
+                                    <input type="input" class="form-control form-control-sm" formControlName="skypeId">
                                                             
                                 </div>
                             </div>
@@ -134,11 +134,11 @@
                             </div>
                             <div class="col-12 mt-4">
                                 <label for="Permanent Address" >Permanent Address</label>
-                                    <input type="input" class="form-control" formControlName="permAddress">
+                                    <input type="input" class="form-control form-control-sm" formControlName="permAddress">
                             </div>
                             <div class="col-12 mt-4">
                                 <label for="Current Address" >Current Address</label>
-                                    <input type="input" class="form-control" formControlName="currentAddress">
+                                    <input type="input" class="form-control form-control-sm" formControlName="currentAddress">
                             </div>
                             <div class="col-12 mt-4">
                                 <div class="row">
@@ -156,7 +156,7 @@
                                     <div class="col-xs-12 col-sm-3 col-lg-3">
                                     <div class="form-group">
                                         <label for="dobMonth" >Month</label>
-                                    <select class="form-select form-control" formControlName="birthMonth"
+                                    <select class="form-select-sm form-control" formControlName="birthMonth"
                                     id="dobMonth"  (change)="generateDayOnMonthChange()"      
                                     aria-label="Default select example" >
                                     <option *ngFor="let mn of birthMonth" [value]="mn">{{mn}}</option>
@@ -167,7 +167,7 @@
                                      <div class="col-xs-12 col-sm-2 col-lg-2">
                                      <div class="form-group">
                                         <label for="day" >Day</label>
-                                    <select class="form-select" 
+                                    <select class="form-select-sm form-control" 
                                     formControlName="birthDay"
                                     id="day"        
                                     aria-label="Default select example">
@@ -182,7 +182,7 @@
                                     <div class="form-group">
                                        
                                         <label for="Gender" >Gender</label>
-                                        <select class="form-select form-control"
+                                        <select class="form-select-sm form-control"
                                                 formControlName="gender"
                                                 >
                                         <option selected value="0">Select</option>
@@ -201,7 +201,7 @@
                                         <div class="col-5 mt-4">
                                             <div class="form-group" >
                                                 <label for="lang" >Language</label>
-                                                <select id="lang" class="form-select form-control" formControlName="defLangaugeName"
+                                                <select id="lang" class="form-select-sm form-control" formControlName="defLangaugeName"
                                                         aria-label="Default select example">
                                                 <option value="ENG">English</option>
                                                 <option value="HIN">Hindi</option>
@@ -215,7 +215,7 @@
                                         <div class="col-5 mt-4">
                                             <div class="form-group">
                                                 <label for="level" >level</label>
-                                                <select id="level" class="form-select form-control" formControlName="defLevel"
+                                                <select id="level" class="form-control form-select-sm " formControlName="defLevel"
                                                         aria-label="Default select example">
                                                 <option value="LKO">Basic</option>
                                                 <option value="MUM">Advance</option>
@@ -231,11 +231,11 @@
 
                                 <div class="col-12 mt-1" formArrayName="languages">
                                     
-                                    <div class="row" *ngFor="let lang of languages().controls; let i=index" [formGroupName]="i">
+                                    <div class="row" *ngFor="let lang of languages.controls; let i=index" [formGroupName]="i">
                                         <div class="col-5 mt-3">
                                             <div class="form-group" >
                                                 <label for="lang-{{i}}" >Language</label>
-                                                <select id="lang-{{i}}" class="form-select" class="form-control" formControlName="langaugeName"
+                                                <select id="lang-{{i}}" class="form-control form-select-sm" formControlName="langaugeName"
                                                         aria-label="Default select example">
                                                 <option value="LKO">Lucknow</option>
                                                 <option value="MUM">Mumbai</option>
@@ -246,7 +246,7 @@
                                         <div class="col-5 mt-3">
                                             <div class="form-group">
                                                 <label for="level-{{i}}" >level</label>
-                                                <select id="level-{{i}}" class="form-select" class="form-control" formControlName="level"
+                                                <select id="level-{{i}}" class="form-control form-select-sm" formControlName="level"
                                                         aria-label="Default select example">
                                                 <option value="LKO">Lucknow</option>
                                                 <option value="MUM">Mumbai</option>
@@ -264,7 +264,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage()">Add</button>
+                                    <button type="button" [disabled]="languages.length==2" class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage('','')">Add</button>
                                 </div> 
                                
                             
@@ -274,7 +274,7 @@
             </div>
         </div>
     </div>
-    <app-upload-profile></app-upload-profile>
+    <app-upload-profile [profilePicByte]="profilePicByte" (uploadedFileData)="updateForm($event)"></app-upload-profile>
     <div class="row">
         <div class="col-12">
         <button class="btn btn-app" type="submit" style="width: fit-content;" [disabled]="profileForm.invalid">Save and Continue</button>
