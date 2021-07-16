@@ -1,0 +1,221 @@
+<app-loading-spinner *ngIf="showLoading"></app-loading-spinner>
+<div class="tutor-dtl-menu shadow-sm"  #stickyMenu [ngClass] = "{'sticky':sticky}">
+    <div class="row ">
+     <div class="tutor-dtl-menu-content">
+        <a class="btn btn-sm btn-app-outline" [routerLink]='"."' fragment="aboutMe">About Me</a>
+        <a class="btn btn-sm btn-app-outline"  [routerLink]='"."' fragment="subjects">Subjects</a>
+        <a class="btn btn-sm btn-app-outline"  [routerLink]='"."' fragment="resume">Resume</a>
+        <a class="btn btn-sm btn-app-outline" [routerLink]='"."' fragment="reviews" >Reviews</a>
+     </div>
+
+    </div>
+
+
+</div>
+<div class="tutor-detail-content-main my-3">
+    <div class="row gy-2">
+      
+          
+          <!-- this is a fake long content; we need it so we can scroll down -->
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card  shadow-sm tutor-card-main">
+                        <div class="card-body">
+                            <div class="row gx-2">
+                                <div class="col-4 tutor-card-sec1">
+                                    <div class="img-container">
+                                        <img class="img-preview" id="imagePreview" 
+                                        [src]=receivedImage>   
+                                    </div>
+                                    <div class="" style="margin-top:5px;">
+                                        <a href="" class="text-warning"><i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star"></i></a>
+                                    </div>
+                                        <span class="fw-bold">33 Reviews</span>
+                                    <div>
+                                        <p for="" class="text-muted" style="margin-top: 10px">100 Teaching Hours</p>
+                                    </div>
+                                    <div class="tutor-card-sec1-sub4">
+                                    </div>
+                                    <div class="tutor-card-sec1-sub5" style="margin-top: auto;">
+                                        
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-8">
+                                    <div class="tutor-card-sec2">
+                                    <h6>{{tutor.displayName | titlecase}}
+                                        <span class="mx-2"><img  src="https://flagcdn.com/w20/in.png"  width="24"  height="18"  alt="India"> </span>
+                                    </h6>
+                                    <a (click)="toggleWishList()"
+                                     data-toggle="tooltip" data-placement="top" title="Add to wishlist" style="float:right">
+                                     <i [ngClass]="{'bi':true, 'bi-heart':aWishList,'bi-heart-fill':rWishList, 'text-danger':true}" > </i></a>
+                                    </div>
+                                     <div class="tutor-card-sec2-sub1"> 
+                                          <p for="" class="text-muted mt-2">PROFESSIONAL TUTOR</p>
+                                          <p for="" class="text-muted mb-0" >From {{tutor.fromCountry}}</p>
+                                          <p for="" class="text-muted mb-0">Living in {{tutor.livingInCity}}, {{tutor.livingInCountry}}</p>
+                                          <p for="" class="text-muted mt-1">Tutor since {{tutor.createdDate | date:'dd/MM/yyyy'}}</p>
+                                          <p for="" class="text-muted mt-1">Teaches   
+                                              <span class="bg-success" style="color: white;font-size: 10px;padding: 3px; border-radius: 2px;">Male</span>   
+                                            <span class="bg-success mx-1" style="color: white;font-size: 10px;padding: 3px; border-radius: 2px;">Female</span>
+                                        </p>
+                                          <p  for="" class="text-muted mt-3">Also speaks
+                                            
+                                            <span *ngFor="let lang of tutor.languageList" style="margin:3px;color: black">{{lang.languageCode}} - {{lang.levelCode}} |</span>
+                                          </p>
+                                          
+                                        </div>
+                                    <div class="tutor-card-sec2-sub1 mb-2">
+                                        
+                                    </div>
+                                    <div  class="tutor-card-sec2-sub3" id="style-7">
+                                           
+                        
+                                    </div>
+                                    
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+          </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="card tutor-card-main shadow-sm">
+                <div class="card-title text-center m-3"><p>Lesson Rates</p>
+                </div>
+                <div class="card-body fs-lg-app">
+                    <div class="center-space-between">
+                        <p >Trial class</p>
+                        <span class="text-muted">{{500|currency:'INR'}}</span>
+                    </div>
+                    
+                    <div class="center-space-between"><p >Group class</p>
+                        <span class="text-muted">{{500|currency:'INR'}}</span>
+                    </div>
+                    <div class="center-space-between"><p >Regular class</p>
+                        <span class="text-muted">{{1000|currency:'INR'}}</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-app-outline-dark" style="width: 100%;">Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="aboutMe">
+    <div class="col-12">
+        <div class="card">
+           
+            <div class="card-body">
+                <div class="card-title " style="font-weight: 500;">
+                    About Me
+                </div>
+                <p class="card-text fs-lg-app">{{tutor.aboutMe}}</p>
+                <div class="card-title " style="font-weight: 500;">
+                    Teaching Experience and Style
+                </div>
+                <p class="card-text fs-lg-app">{{tutor.aboutTeachingExp}}</p>
+                <div *ngIf="tutor.otherInfo!=null && tutor.otherInfo!=''" class="card-title " style="font-weight: 500;">
+                    Other Information
+                </div>
+                <p class="card-text fs-lg-app">{{tutor.otherInfo}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 subjects" id="subjects">
+    <div class="col-12">
+        <div class="card">
+           
+            <div class="card-body">
+                <div class="card-title" style="font-weight: 500;">
+                    Subjects
+                </div>
+                <div class="fs-lg-app" *ngFor="let s of tutor.tutorSubjects">
+                    {{s.subjectCode}}
+                    <label>{{s.levelCode}}</label>
+                    <hr>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 resume" id="resume">
+    <div class="col-12">
+        <div class="card">
+           
+            <div class="card-body">
+                <div class="card-title" style="font-weight: 500;">
+                    Resume
+                </div>
+                <div class="row gy-2">
+                    <div class="col-xs-12 col-sm-4 fs-lg-app">
+                        <div class="shadow-sm resume-card">
+                        <div><p class="fs-lg-app">Education</p></div>
+                        <div *ngFor="let e of tutor.educations">
+                            <p class="text-muted mb-0">{{e.fromYear}}-{{e.toYear}}</p>
+                            <p class="text-muted ">{{e.degree}} in {{e.major}}</p>
+                            <hr>
+                        </div> 
+                    </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 fs-lg-app">
+                        <div class="shadow-sm resume-card">
+                        <div><p class="fs-lg-app">Experience</p></div>
+                        <div *ngIf="tutor?.experiences!=null && tutor?.experiences?.length==0">
+                            <p class="text-muted mb-0">No Experience</p>
+                        </div>
+                        <div *ngFor="let ex of tutor.experiences">
+                            <p class="text-muted mb-0">{{ex.fromYear}}-{{ex.toYear}}</p>
+                            <p class="text-muted ">{{ex.company}} as a {{ex.designation}}</p>
+                            <hr>
+                        </div> 
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 fs-lg-app">
+                        <div class="shadow-sm resume-card">
+                        <div><p class="fs-lg-app">Certificates</p></div>
+                        <div *ngIf="tutor?.certificates!=null && tutor?.certificates?.length==0">
+                            <p class="text-muted mb-0">No certificates</p>
+                        </div>
+                        <div  *ngFor="let c of tutor?.certificates">
+                            <p class="text-muted mb-0">{{c.fromYear}}</p>
+                            <p class="text-muted ">{{c.certicationName}} - {{c.provider}}</p>
+                            <hr>
+                        </div> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 reviews" id="reviews">
+    <div class="col-12">
+        <div class="card">
+           
+            <div class="card-body">
+                <div class="card-title" style="font-weight: 500;">
+                    Reviews
+                </div>
+                <div class="shadow-sm fs-lg-app mt-2" style="border-radius:10px;padding: 10px;" 
+                *ngFor="let s of tutor.tutorSubjects">
+                    <div class="center-space-between"><p class="text-muted">Praveen Kumar</p><span class="text-muted fs-xs-app">{{'10/07/2021'|date:'dd/MM/yyyy'}}</span></div>
+                    <label style="font-style: italic;"> Very patient and organised. Looking forward to booking more lessons with him.</label>
+                   
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -11,11 +11,12 @@ export class MatSnackService {
   showSuccesSnack(message)
   {
  this.matSnack.open(message,"Close",
-          {horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-success','text-light']})
+          {duration: 5000,horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-success','text-light']})
   }
 
   showErrorSnack(message)
   {
-    this.matSnack.open(message, "Close",{horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-danger','text-light']});
+    this.matSnack.open(message, "Close",{horizontalPosition:'center',verticalPosition:'top',
+    duration: 5000,panelClass:['bg-danger','text-light']});
   }
 }

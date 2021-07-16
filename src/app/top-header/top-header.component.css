@@ -6,28 +6,3 @@
         font-weight: 400;
     }
 
-.btn-outline-dark{
-        border-color: #ff9b1f !important;
-        border: 2px solid ;
-        color: #ff9b1f !important;
-        font-weight: 500;
-
-}
-
-.btn-outline-dark:hover{
-    background-color: #ff9b1f !important;
-    color: #fff !important;
-
-}
-
-.btn-outline-dark:active {
-    background-color: #d17400 !important; ;
-  }
-    
-
-  .btn-outline-dark:focus
- {
-    outline: none;
-    box-shadow: none;
-    border-color: #ff9b1f !important;
-  }

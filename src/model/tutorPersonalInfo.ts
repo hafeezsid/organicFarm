@@ -1,5 +1,5 @@
 import { Byte } from "@angular/compiler/src/util";
-import { UserLangauge } from "./UserLangauge";
+import { UserLanguage } from "./UserLanguage";
 
 export class TutorPersonalInfo{
     
@@ -43,6 +43,6 @@ export class TutorPersonalInfo{
 	  defLangaugeName:string;
 
 	  defLangLevel:string;
-	  languageList:UserLangauge[];
-	  profilePicByte:Byte[];
+	  languageList:UserLanguage[];
+	  profilePicByte:BinaryType[];
 }

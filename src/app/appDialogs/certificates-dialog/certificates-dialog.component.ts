@@ -56,6 +56,12 @@ export class CertificatesDialogComponent implements OnInit {
       this.submitted=false;
       return ;
     }
+    if(this.attachedFile==null || this.attachedFile==undefined)
+    {
+      this.snackService.showErrorSnack("Please upload related document.");
+      this.submitted=false;
+      return;
+    }
       this.certificate={
         tutorCertificateId:0,
         acquiredYear:this.f.acquiredYear.value,

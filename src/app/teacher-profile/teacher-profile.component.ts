@@ -33,6 +33,7 @@ export class TeacherProfileComponent implements OnInit {
   attachedFile:File;
   onlyNumberRegex='/^[0-9]*$/';
   tutorSubjectList:TutorSubject[];
+  tutorSubject=new TutorSubject();
   constructor(private fb:FormBuilder,private authService:AuthenticationService
     ,public dialog: MatDialog,private tutorService:TutorService,
     private snackService:MatSnackService, private router:Router) {
@@ -76,18 +77,18 @@ export class TeacherProfileComponent implements OnInit {
 };
 
 this.teacherProfForm=this.fb.group({
-  defSubjectName:['',[Validators.required]],
-  defLevel:['',[Validators.required]],
+  //defSubjectName:['',[Validators.required]],
+  //defLevel:['',[Validators.required]],
   hourlyRate:['',[Validators.required]],
   aboutMe:['',[Validators.required]],
   aboutTeachingExp:['',[Validators.required]],
   otherInfo:['',[Validators.required]],
   subjects:this.fb.array([],[Validators.required]),
-  educations:this.fb.array([],[Validators.required]),
-  experiences:this.fb.array([],[Validators.required]),
+  educations:this.fb.array([]),
+  experiences:this.fb.array([]),
   certificates:this.fb.array([])
 });
-
+this.teachingInfo=new TutorProfileInfo();
 this.tutorService.fetchTeachingInfo().subscribe(
   res=>{
     console.log(res);
@@ -95,12 +96,8 @@ this.tutorService.fetchTeachingInfo().subscribe(
     this.teacherProfForm.patchValue(this.teachingInfo);
   
     this.teachingInfo?.tutorSubjects?.forEach(e=>{
-      if(e.isDefault){
-        this.teacherProfForm.patchValue({defSubjectName:e.subjectCode,defLevel:e.levelCode});
-      }
-      else{
-      this.addSubject(e.subjectCode,e.levelCode);
-      }
+          this.addSubject(e);
+      
     });
 
      this.teachingInfo?.educations?.forEach(e=>{
@@ -132,18 +129,19 @@ this.tutorService.fetchTeachingInfo().subscribe(
     return this.teacherProfForm.get('subjects') as FormArray;
   }
 
-  addSubject(a,b) {
-    this.subjects.push(this.newSubject(a,b));
+  addSubject(tutorSubject:TutorSubject) {
+    this.subjects.push(this.newSubject(tutorSubject));
   }
    
   removeSubject(i:number) {
     this.subjects.removeAt(i);
   }
 
-  newSubject(a,b): FormGroup {
+  newSubject(tutorSubject:TutorSubject): FormGroup {
     return this.fb.group({
-      subjectName: [a],
-      level: [b],
+      tutorSubjectId: [tutorSubject.tutorSubjectId],
+      subjectName: [tutorSubject.subjectCode],
+      level: [tutorSubject.levelCode],
     })
   }
 
@@ -159,8 +157,17 @@ this.tutorService.fetchTeachingInfo().subscribe(
   }
    
   removeEducation(i:number) {
-    this.tutorService.deleteEducation(this.educations[i])
-    this.educations.removeAt(i);
+    let education=this.educations.controls[i].value
+    this.tutorService.deleteEducation(education).subscribe(
+      res=>
+      {
+        this.educations.removeAt(i);
+      },
+      error=>{
+        this.snackService.showErrorSnack("Error occurred while removing education");
+      }
+    )
+    
   }
 
   newEducation(education:Education):FormGroup {
@@ -217,9 +224,17 @@ this.tutorService.fetchTeachingInfo().subscribe(
     this.experiences.push(this.newExperience(experience));
   }
    
-  removeExperince(i:number) {
-    this.tutorService.deleteExperience(this.experiences[i])
-    this.experiences.removeAt(i);
+  removeExperience(i:number) {
+    this.tutorService.deleteExperience(this.experiences.controls[i].value).subscribe(
+      res=>
+      {
+        this.experiences.removeAt(i);
+      },
+      error=>{
+        this.snackService.showErrorSnack("Error occurred while removing experience");
+      }
+    )
+   
   }
 
   newExperience(experience:Experience):FormGroup {
@@ -309,8 +324,15 @@ this.tutorService.fetchTeachingInfo().subscribe(
   }
    
   removeCertificate(i:number) {
-    this.tutorService.deleteCertificate(this.certificates[i])
-    this.certificates.removeAt(i);
+    this.tutorService.deleteCertificate(this.certificates.controls[i].value).subscribe(
+      res=>{
+        this.certificates.removeAt(i);
+      },
+      error=>{
+        this.snackService.showErrorSnack("Error occurred while removing certificates");
+      }
+    )
+    
   }
 
   newCertificate(certificate:Certificate):FormGroup {
@@ -328,15 +350,19 @@ this.tutorService.fetchTeachingInfo().subscribe(
 {
   if(this.teacherProfForm.invalid)
   {
+    this.snackService.showErrorSnack("Please fill all mandatory fields. Make sure to enter correct values")
     return;
+    
   }
   if(this.educations.length==0)
   {
     this.snackService.showErrorSnack("Please enter atleast one education details")
+    return;
   }
   if(this.experiences.length==0)
   {
-    this.snackService.showErrorSnack("Please enter atleast one experience details. You can enter any school, work or freelancer teaching experience.")
+    this.snackService.showErrorSnack("Please enter at least one experience details. You can enter any school, work or freelancer teaching experience.")
+    return;
   }
   this.tutorSubjectList=[];
   this.teachingInfo.hourlyRate=this.getControlValue('hourlyRate').value;
@@ -344,18 +370,8 @@ this.tutorService.fetchTeachingInfo().subscribe(
   this.teachingInfo.aboutTeachingExp=this.getControlValue('aboutTeachingExp').value;
   this.teachingInfo.otherInfo=this.getControlValue('otherInfo').value;
 
-if(this.findDefaultSubject!=undefined){
-  this.findDefaultSubject.levelCode=this.getControlValue('defLevel').value
-  this.tutorSubjectList.push(this.findDefaultSubject);
-}
-else{
-  let ts=new TutorSubject();
-  ts.subjectCode=this.getControlValue('defSubjectName').value;
-  ts.levelCode=this.getControlValue('defLevel').value;
-  ts.isDefault=false;
-  this.tutorSubjectList.push(ts);
-}
 
+this.teachingInfo.tutorSubjects=this.readAdditionalSubjects();
 this.teachingInfo.tutorSubjects=this.tutorSubjectList;
 this.teachingInfo.educations=[];
 this.teachingInfo.experiences=[];
@@ -373,6 +389,7 @@ error=>{
 
 get findDefaultSubject()
 {
+
   for (let l of this.teachingInfo.tutorSubjects){
     if(this.getControlValue('defSubjectName').value==l.subjectCode && l.isDefault)
       {
@@ -384,33 +401,34 @@ readAdditionalSubjects()
 {
   let frmGroup=this.subjects.controls.map(fg=>fg.value);
   console.log(frmGroup);
-  frmGroup.forEach(e=>
-    {
+  for(let fg of frmGroup){
       let flag=false;
       let ts:TutorSubject;
-      for(let l of this.teachingInfo.tutorSubjects){
-        if(e.subjectCode==l.subjectCode)
+      if(this.teachingInfo?.tutorSubjects){
+      for(let l of this.teachingInfo?.tutorSubjects){
+        if(fg.tutorSubjectId==l.tutorSubjectId)
           {
              flag=true;
              ts=l;
              break;
           }
       }
+    }
       if(flag){
-        ts.levelCode=e.levelCode;
-       
+        ts.subjectCode=fg.subjectName;
+        ts.levelCode=fg.level; 
       }
       else{
         ts=new TutorSubject();
-        ts.subjectCode=e.subjectCode;
-        ts.levelCode=e.levelCode;
+        ts.subjectCode=fg.subjectName;
+        ts.levelCode=fg.level;
         ts.isDefault=false;
       }
       this.tutorSubjectList.push(ts);
-    });
+    }
   return this.tutorSubjectList;
 }
-getControlValue(name){
+getControlValue(name:any){
   return this.teacherProfForm.get(name);
 }
 }

@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 import { AdminMainComponent } from './system_admin/admin-main/admin-main.component';
 import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
+import { TeacherDetailComponent } from './tutor/teacher-detail/teacher-detail.component';
+import { TeacherListComponent } from './tutor/teacher-list/teacher-list.component';
 
 
 const routes: Routes = [
@@ -25,15 +27,16 @@ const routes: Routes = [
 {path:'register/step1',component:CreateProfileComponent},
 {path:'register/step2',component:TeacherProfileComponent},
 {path:'register/final',component:AcknowledgmentComponent},
+{path:'tutor/search',component:TeacherListComponent},
+{path:'tutor/:tutorId/details',component:TeacherDetailComponent},
 {path:'logout',component:LogoutComponent},
 {path:'admin',component:AdminMainComponent,canActivate:[AuthGuard]},
-{path:'products', component:ProductComponent},
 {path:'productListing',component:ProductListingComponent},
-{ path: '**', redirectTo: '' }
+{ path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled',anchorScrolling:'enabled',scrollOffset: [0, 64]})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

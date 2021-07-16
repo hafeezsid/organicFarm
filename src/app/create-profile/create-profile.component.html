@@ -196,7 +196,7 @@
                                     Languages
                                 </div>
 
-                                <div class="col-12" >
+                                <!--<div class="col-12" >
                                     <div class="row" >
                                         <div class="col-5 mt-4">
                                             <div class="form-group" >
@@ -226,35 +226,39 @@
                                         </div>
                                     </div>
                                 
-                                </div> 
+                                </div> -->
 
 
                                 <div class="col-12 mt-1" formArrayName="languages">
                                     
                                     <div class="row" *ngFor="let lang of languages.controls; let i=index" [formGroupName]="i">
-                                        <div class="col-5 mt-3">
+                                        <div class="col-5 mt-1">
                                             <div class="form-group" >
                                                 <label for="lang-{{i}}" >Language</label>
-                                                <select id="lang-{{i}}" class="form-control form-select-sm" formControlName="langaugeName"
+                                                <select id="lang-{{i}}" class="form-control form-select-sm" formControlName="languageName"
                                                         aria-label="Default select example">
-                                                <option value="LKO">Lucknow</option>
-                                                <option value="MUM">Mumbai</option>
+                                                        <option value="ENG">English</option>
+                                                        <option value="HIN">Hindi</option>
+                                                        <option value="URD">Urdu</option>
+                                                        <option value="FRH">French</option>
+                                                        <option value="SPH">Spanish</option>
                                                 </select>                     
                                             </div>
                                             
                                         </div>
-                                        <div class="col-5 mt-3">
+                                        <div class="col-5 mt-1">
                                             <div class="form-group">
                                                 <label for="level-{{i}}" >level</label>
                                                 <select id="level-{{i}}" class="form-control form-select-sm" formControlName="level"
                                                         aria-label="Default select example">
-                                                <option value="LKO">Lucknow</option>
-                                                <option value="MUM">Mumbai</option>
+                                                        <option value="Basic">Basic</option>
+                                                        <option value="Advance">Advance</option>
+                                                        <option value="Native">Native</option>
                                                 </select>
                                                                 
                                              </div>  
                                         </div>
-                                        <div class="col-1 mt-3">
+                                        <div class="col-1 mt-1">
                                             <br>
                                             <h1>
                                                 <a (click)="removeLanguage(i)" >
@@ -264,7 +268,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="button" [disabled]="languages.length==2" class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage('','')">Add</button>
+                                    <button type="button" [disabled]="languages.length==3" class="btn btn-sm btn-app" style="width: fit-content;" (click)="addLanguage(this.userLanguage)">Add</button>
                                 </div> 
                                
                             
@@ -277,7 +281,7 @@
     <app-upload-profile [profilePicByte]="profilePicByte" (uploadedFileData)="updateForm($event)"></app-upload-profile>
     <div class="row">
         <div class="col-12">
-        <button class="btn btn-app" type="submit" style="width: fit-content;" [disabled]="profileForm.invalid">Save and Continue</button>
+        <button class="btn btn-app" type="submit" style="width: fit-content;" >Save and Continue</button>
         </div>
     </div>
 </form>

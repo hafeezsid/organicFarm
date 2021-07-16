@@ -9,16 +9,17 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackService } from '../services/mat-snack.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor(private snackBar:MatSnackBar) {}
+  constructor(private snackBar:MatSnackService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
 
-      retry(1),
+     // retry(1),
 
       catchError((error: HttpErrorResponse) => {
 
@@ -30,7 +31,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
           errorMessage = `Error: ${error.error.message}`;
           
-          this.snackBar.open(errorMessage,"Close",{horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-danger','text-light']})
+          this.snackBar.showErrorSnack(errorMessage);
 
 
         } else {
@@ -42,8 +43,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
         }
 
-        this.snackBar.open(errorMessage,"Close",{horizontalPosition:'center',verticalPosition:'top',panelClass:['bg-danger','text-light']})
-
+        this.snackBar.showErrorSnack("Techinical Issue. Please try again later");
 
         return throwError(errorMessage);
 

@@ -1,9 +1,7 @@
-<div class="container-wrapper">
-<div class="container">
+<div class="row">
     <mat-grid-list [cols]="cols" rowHeight="450px" gutterSize="4px">  
         <mat-grid-tile *ngFor="let p of productList">
             <app-product [product]="p"></app-product>
     </mat-grid-tile>
     </mat-grid-list>
-</div>
 </div>

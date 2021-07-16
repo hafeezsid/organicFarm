@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+/*@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@300;400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&family=Source+Sans+Pro&display=swap');
+*/
+@import url('styles/google-fonts.css');
 
-html, body { height: 100%;
-    font-family: 'Poppins', sans-serif !important;
+html, body { 
+  
+    font-family: 'Roboto', sans-serif !important;
+   
 }
 .nav-item a{
     font-size: large;
@@ -16,6 +22,10 @@ html, body { height: 100%;
 }
 .btn-app:hover{
     background-color: #d17400 !important;
+}
+
+.fs-lg-app{
+    font-size: 14px !important;
 }
 .fs-xm-app{
     
@@ -57,22 +67,85 @@ select{
     font-size: 13px !important;
 }
 
+a{
+    cursor: pointer !important;
+}
+
+.btn-app-outline{
+    border-color: #ff9b1f !important;
+    border: 2px solid ;
+    color: #ff9b1f !important;
+    font-weight: 500 !;
+
+}
+
+.btn-app-outline:hover{
+background-color: #ff9b1f !important;
+color: #fff !important;
+
+}
+
+.btn-app-outline:active {
+background-color: #d17400 !important; ;
+}
 
 
+.btn-app-outline:focus
+{
+outline: none !important;
+box-shadow: none !important;
+border-color: #ff9b1f !important;
+}  
 
-@media screen and (max-width: 500px) {
+.btn-app-outline-dark{
+    border-color: black !important;
+    border: 2px solid ;
+    color: black !important;
+    font-weight: 500 !;
+}
+
+.btn-app-outline-dark:hover{
+    background-color: #ff9b1f !important;
+    color: #fff !important;
+    border-color: #ff9b1f !important;
+    }
+    
+
+.center-space-between{
+    display: inline-flex;justify-content: space-between; width: 100%;
+}
+
+@media screen and (max-width: 576px) {
 	
 .btn-app{
     background-color: #ff9005 !important;
     border-radius: 2px;
-    font-size: xx-small;
+    font-size: 10px !important;
     color: #ffff !important;
-    width: fit-content;
+    width: fit-content !important;
 }
-.card-body{
-    padding:0 !important;
+.btn-sm{
+font-size: 0.700rem !important;
 }
+
 form{
    margin: 0 !important; 
 }
+
+.fs-lg-app{
+    font-size: 12px !important;
+}
+.card-title{
+    font-size: 13px !important;
+}
+}
+
+@media screen and (max-width: 850px) {
+    .btn-app{
+        background-color: #ff9005 !important;
+        border-radius: 2px;
+        font-size: 10px !important;
+        color: #ffff !important;
+        width: fit-content !important;
+    }
 }

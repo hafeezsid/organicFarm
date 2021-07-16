@@ -1,0 +1,165 @@
+.img-preview{
+    display: block;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+.img-container{
+    width: 80px;
+    height: 80px;  
+    padding: 2px 4px;    
+}
+
+.tutor-card-main{
+    height: 300px;
+}
+
+.tutor-card-sec1{
+    display: flex;
+    flex-direction:column ;
+    flex: 1;
+   align-items: center;
+   font-size:12px;
+   font-weight: 300;
+}
+
+.tutor-card-sec2{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.tutor-card-sec2-sub1{
+    font-size:12px !important;
+    font-weight: 300 !important;
+}
+.tutor-card-sec2-sub2{
+    font-size:12px;
+    font-weight: 300 ;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+    cursor: pointer
+}
+a{
+    text-decoration: none !important;
+}
+
+.underline {
+    border-bottom: 2px solid red;
+    display: inline-block;
+    
+  }
+  
+
+.tutor-card-sec1-sub5{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tutor-card-sec1-sub5 button{
+    margin: 5px;
+}
+.tutor-card-sec2-sub3{
+    font-size:12px;
+    overflow-y: auto;
+    max-height: 127px;
+    line-height: 20px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:radial-gradient(circle, rgba(255,155,31,1) 0%, rgba(244,156,4,1) 68%);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(244,156,4,1); 
+  }
+
+  @media only screen and (max-width: 425px) {
+    .img-container{
+        width: 60px;
+        height: 60px;  
+        padding: 2px 4px;  
+    }
+    .tutor-card-main{
+        padding: 6px 6px;
+        height: 250px;
+
+    }
+
+    .tutor-card-sec1{
+       font-size:10px;
+       font-weight: 300;
+       height: 226px;
+    }
+   .tutor-card-sec2-sub1{
+        font-size:10px !important;
+        font-weight: 400 !important;
+    }
+    .tutor-card-sec2-sub2{
+        font-size:10px;
+        font-weight: 300 ;
+    }
+    .tutor-card-sec2-sub3{
+        font-size:10px;
+        overflow-y: auto;
+        max-height: 100px;
+        line-height: 20px;
+    }
+    h6{
+        font-size: 14px;
+    }
+    
+}
+
+@media only screen and (min-width: 426px) and (max-width: 576px) {
+    .img-container{
+        width: 60px;
+        height: 60px;  
+        padding: 2px 4px;  
+    }
+    .tutor-card-main{
+        
+    }
+
+    .tutor-card-sec1{
+       font-size:12px;
+       font-weight: 300;
+       height: 265px;
+    }
+   .tutor-card-sec2-sub1{
+        font-size:12px !important;
+        font-weight: 400 !important;
+    }
+    .tutor-card-sec2-sub2{
+        font-size:12px;
+        font-weight: 300 ;
+    }
+    .tutor-card-sec2-sub3{
+        font-size:12px;
+        overflow-y: auto;
+        max-height: 130px;
+        line-height: 20px;
+    }
+    h6{
+        font-size: 14px;
+    }
+    
+}

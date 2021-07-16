@@ -1,0 +1,146 @@
+.sticky{
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .content{
+    height: 200vh;
+  }
+
+  .tutor-dtl-menu{  
+      width: 100%;
+      border-radius: 3px;
+      background: white;
+  }
+
+  .tutor-dtl-menu-content{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+  .tutor-dtl-menu-content a{
+      margin: 2px;
+  }
+
+
+  .img-preview{
+    display: block;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+.img-container{
+    width: 100px;
+    height: 100px;  
+    padding: 2px 4px;    
+}
+
+.tutor-card-main{
+    height: 250px;
+}
+
+.tutor-card-sec1{
+    display: flex;
+    flex-direction:column ;
+    flex: 1;
+   align-items: center;
+   font-size:12px;
+   font-weight: 300;
+}
+
+.tutor-card-sec2{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.tutor-card-sec2-sub1{
+    font-size:12px !important;
+    font-weight: 300 !important;
+}
+.tutor-card-sec2-sub2{
+    font-size:12px;
+    font-weight: 300 ;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+    cursor: pointer
+}
+a{
+    text-decoration: none !important;
+}
+
+.underline {
+    border-bottom: 2px solid red;
+    display: inline-block;
+    
+  }
+  
+
+.tutor-card-sec1-sub5{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tutor-card-sec1-sub5 button{
+    margin: 5px;
+}
+.tutor-card-sec2-sub3{
+    font-size:12px;
+    overflow-y: auto;
+    max-height: 127px;
+    line-height: 20px;
+}
+.subjects{
+    max-height: 300px;
+    overflow-y: auto;
+}
+.aboutMe{
+    max-height: 600px;
+    overflow-y: auto;
+}
+.resume{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.reviews{
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.resume-card{
+padding: 10px;
+min-height: 250px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:radial-gradient(circle, rgba(255,155,31,1) 0%, rgba(244,156,4,1) 68%);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(244,156,4,1); 
+  }
+

@@ -1,0 +1,60 @@
+
+<div class="card  shadow-sm tutor-card-main">
+<div class="card-body">
+    <div class="row gx-2" style="height: 100%;">
+        <div class="col-4 tutor-card-sec1">
+            <div class="img-container">
+                <img class="img-preview" id="imagePreview" 
+                [src]=receivedImage>   
+            </div>
+            <div class="" style="margin-top:5px;">
+                <a href="" class="text-warning"><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i></a>
+            </div>
+                <span class="fw-bold">33 Reviews</span>
+            <div>
+                <p for="" class="text-muted" style="margin-top: 10px">100 Teaching Hours</p>
+            </div>
+            <div class="tutor-card-sec1-sub4">
+                <span class="text-danger">Hourly Rate    </span>   <span class="fw-bold">{{tutor.hourlyRate| currency:'INR': 'symbol' : '1.0-0'}} </span>
+            </div>
+            <div class="tutor-card-sec1-sub5" style="margin-top: auto;">
+                <button type="button" class="btn btn-sm btn-app">Book</button>
+                <button type="button" (click)="toTutorDetails()" class="btn btn-sm btn-app">View</button>
+            </div>
+           
+        </div>
+        <div class="col-8">
+            <div class="tutor-card-sec2">
+            <h6>{{tutor.displayName | titlecase}}
+                <span class="mx-2"><img  src="https://flagcdn.com/w20/in.png"  width="24"  height="18"  alt="India"> </span>
+            </h6>
+            <a (click)="toggleWishList()"
+             data-toggle="tooltip" data-placement="top" title="Add to wishlist" style="float:right">
+             <i [ngClass]="{'bi':true, 'bi-heart':aWishList,'bi-heart-fill':rWishList, 'text-danger':true}" > </i></a>
+            </div>
+             <div class="tutor-card-sec2-sub1">  <p for="" class="text-muted mt-3">PROFESSIONAL TUTOR</p></div>
+            <div class="tutor-card-sec2-sub2 mb-2">
+               <a (click)="showAbtSection() " class="text-muted fw-bold" [ngClass]="{'underline':showAboutMe}" >
+                   About Me</a>
+                   <a (click)="showSubSection()" class="text-muted fw-bold" [ngClass]="{'underline':showSubjects}">
+                       Subjects</a> 
+            </div>
+            <div *ngIf="showSubjects" class="tutor-card-sec2-sub3" id="style-7">
+                   
+                    <div *ngFor="let s of tutor.tutorSubjects">
+                        {{s.subjectCode}}
+                        <label>{{s.levelCode}}</label>
+                        <hr>
+                    </div> 
+            </div>
+            <div *ngIf="showAboutMe" class="tutor-card-sec2-sub3" id="style-7">
+                {{tutor.aboutMe}}
+            </div>
+        </div>
+    </div>
+</div>
+</div>

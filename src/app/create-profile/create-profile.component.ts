@@ -1,14 +1,13 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
-import { setupTestingRouter } from '@angular/router/testing';
-import { UserLangauge } from 'src/model/UserLangauge';
+import { UserLanguage } from 'src/model/UserLanguage';
 import { TutorPersonalInfo } from 'src/model/tutorPersonalInfo';
 import { User } from 'src/model/User';
 import { AuthenticationService } from '../authentication.service';
 import { MatSnackService } from '../services/mat-snack.service';
 import { TutorService } from '../services/tutor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-profile',
@@ -22,8 +21,9 @@ export class CreateProfileComponent implements OnInit {
   birthDay:number[]=[];
   user:User;
   personalInfo:TutorPersonalInfo;
-  languageList:UserLangauge[];
-  profilePicByte:Byte[];
+  languageList:UserLanguage[];
+  profilePicByte:BinaryType[];
+  userLanguage=new UserLanguage();
   constructor(private fb:FormBuilder,private authService:AuthenticationService,
     private snackService:MatSnackService, private tutorService:TutorService,
     private router:Router) {
@@ -54,8 +54,8 @@ export class CreateProfileComponent implements OnInit {
       gender:['',[Validators.required]],
       currentAddress:['',[Validators.maxLength(200),Validators.required]],
       permAddress:['',[Validators.maxLength(200),Validators.required]],
-      defLangaugeName:['',[Validators.required]],
-      defLevel:['',[Validators.required]],
+      //defLangaugeName:['',[Validators.required]],
+      //defLevel:['',[Validators.required]],
       languages:this.fb.array([]),
       profilePic:["false",Validators.required],
     });
@@ -69,13 +69,10 @@ export class CreateProfileComponent implements OnInit {
         this.profileForm.patchValue(this.personalInfo);
         this.languageList=this.personalInfo?.languageList;
         this.languageList?.forEach(e=>{
-          if(e.isDefault){
-            this.profileForm.patchValue({defLangaugeName:e.languageCode,defLevel:e.levelCode});
-          }
-          else{
-          this.addLanguage(e.languageCode,e.levelCode);
-          }
-        })
+         
+          this.addLanguage(e);
+          
+        });
         if(this.personalInfo?.profilePicByte!=null)
         {
           this.profilePicByte=this.personalInfo?.profilePicByte;
@@ -99,16 +96,17 @@ export class CreateProfileComponent implements OnInit {
    
   }
 
-  newLanguage(a,b): FormGroup {
+  newLanguage(language:UserLanguage): FormGroup {
     return this.fb.group({
-      langaugeName: [a],
-      level: [b],
+      languageId: [language.userLanguageId],
+      languageName: [language.languageCode],
+      level: [language.levelCode],
     })
   
   }
 
-  addLanguage(a,b) {
-    this.languages.push(this.newLanguage(a,b));
+  addLanguage(language:UserLanguage) {
+    this.languages.push(this.newLanguage(language));
   }
    
   removeLanguage(i:number) {
@@ -162,12 +160,17 @@ submitPersonalInfo()
 {
   if(this.profileForm.invalid)
   {
+    this.snackService.showErrorSnack("Please fill all the mandatory details.");
     return;
   }
   if(this.getControlValue('profilePic').value == "false"){
       this.snackService.showErrorSnack("Please upload profile picture");
       return;
   }
+  if(this.languages.length==0){
+    this.snackService.showErrorSnack("Please add at least one langauge");
+    return;
+}
 
 this.personalInfo.displayName=this.getControlValue('displayName').value;
 this.personalInfo.gender=this.getControlValue('gender').value;
@@ -188,9 +191,7 @@ this.personalInfo.zoomMeetingId=this.getControlValue('zoomMeetingId').value;
 this.personalInfo.zoomMeetingLink=this.getControlValue('zoomMeetingLink').value;
 this.personalInfo.zoomPassCode=this.getControlValue('zoomPassCode').value;
 this.languageList=[];
-this.languageList.push(new UserLangauge(this.getControlValue('defLangaugeName').value,
-                this.getControlValue('defLevel').value,true));
-this.readAdditionalLanguage();
+this.personalInfo.languageList=this.readAdditionalLanguage();
 this.personalInfo.languageList=this.languageList;
 console.log(this.personalInfo);
 this.tutorService.saveTutorPersonalInfo(this.personalInfo).subscribe(
@@ -205,10 +206,34 @@ error=>{
 
 readAdditionalLanguage()
 {
-  let frmGroup=this.languages.controls.map(fg=>fg.value);
-  console.log(frmGroup);
-  frmGroup.forEach(e=>this.languageList.push(new UserLangauge(e.langaugeName,e.level,false)));
-  return this.languageList;
+    let frmGroup=this.languages.controls.map(fg=>fg.value);
+    console.log(frmGroup);
+    for(let fg of frmGroup){
+        let flag=false;
+        let ul:UserLanguage;
+        if(this.personalInfo?.languageList){
+        for(let l of this.personalInfo?.languageList){
+          if(fg.languageId==l.userLanguageId)
+            {
+               flag=true;
+               ul=l;
+               break;
+            }
+        }
+      }
+        if(flag){
+          ul.languageCode=fg.languageName;
+          ul.levelCode=fg.level; 
+        }
+        else{
+          ul=new UserLanguage();
+          ul.languageCode=fg.languageName;
+          ul.levelCode=fg.level;
+          ul.isDefault=false;
+        }
+        this.languageList.push(ul);
+      }
+    return this.languageList;
 }
 
 

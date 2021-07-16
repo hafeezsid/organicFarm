@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Certificate } from 'src/model/certificate';
 import { Education } from 'src/model/education';
 import { Experience } from 'src/model/Experience';
+import { SearchTutorList } from 'src/model/search-tutor-list';
+import { TutorListView } from 'src/model/tutor-list-view';
 import { TutorPersonalInfo } from 'src/model/tutorPersonalInfo';
 import { TutorProfileInfo } from 'src/model/tutorProfileInfo';
 import { User } from 'src/model/User';
@@ -15,18 +17,30 @@ import { MatSnackService } from './mat-snack.service';
   providedIn: 'root'
 })
 export class TutorService {
-  
- 
 
-  
- 
+   
 observ:any;
-  user:User;
-  constructor(private http:HttpClient,private authService:AuthenticationService,
-    private snackService:MatSnackService) {
-    this.user=this.authService.currentUserValue;
-    this.observ=new Observable<any>();
-   }
+user:User;
+headers = new HttpHeaders().append('Content-Type', 'application/json');
+
+constructor(private http:HttpClient,private authService:AuthenticationService,
+  private snackService:MatSnackService) {
+  this.user=this.authService.currentUserValue;
+  this.observ=new Observable<any>();
+ }
+ fetchTutorDetailById(tutorId: number) { 
+ return this.http.get<TutorListView>(`${environment.apiUrl}/tutor/fetch/${tutorId}`);
+}
+  
+
+  fetchTutorDetails(pageNum: number, pageSize: number) {
+  
+    const params = new HttpParams()
+    .set("page",pageNum as unknown as string)
+    .set("size",pageSize as unknown as string);
+   return this.http.get<SearchTutorList>(`${environment.apiUrl}/tutor/fetch`,{headers:this.headers,params:params})
+  }
+  
 
    fetchPersonalInfo() {
     return this.http.get<TutorPersonalInfo>(`${environment.apiUrl}/tutor/basicInfo`);
@@ -122,13 +136,13 @@ observ:any;
   }
 
 
-  deleteEducation(education: Education) {
-    return this.http.delete<Education>(`${environment.apiUrl}/tutor/education/${education.tutorEducationId}`);
+  deleteEducation(education) {
+    return this.http.delete<any>(`${environment.apiUrl}/tutor/education/${education.educationId}`);
   }
-  deleteExperience(experience: Experience) {
-    return this.http.delete<Experience>(`${environment.apiUrl}/tutor/experience/${experience.tutorExperienceId}`);
+  deleteExperience(experience) {
+    return this.http.delete<any>(`${environment.apiUrl}/tutor/experience/${experience.experienceId}`);
   }
-  deleteCertificate(certificate: Certificate) {
-    return this.http.delete<Certificate>(`${environment.apiUrl}/tutor/certificate/${certificate.tutorCertificateId}`);
+  deleteCertificate(certificate) {
+    return this.http.delete<any>(`${environment.apiUrl}/tutor/certificate/${certificate.certificateId}`);
   }
 }

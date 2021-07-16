@@ -59,6 +59,12 @@ export class EducationDialogComponent implements OnInit {
       this.submitted=false;
       return ;
     }
+    if(this.attachedFile==null || this.attachedFile==undefined)
+    {
+      this.snackService.showErrorSnack("Please upload related document.");
+      this.submitted=false;
+      return;
+    }
       this.education={
         tutorEducationId:0,
         fromYear:this.f.fromYear.value,
@@ -74,8 +80,9 @@ export class EducationDialogComponent implements OnInit {
       
     this.tutorService.saveEducationDetails(this.education,this.attachedFile).subscribe(
       res=>{
-        console.log("Data saved Successfully");
+        console.log(res);
         this.education.uploadStatus=true;
+        this.education.tutorEducationId=res.tutorEducationId;
         console.log(this.education);
         this.dialogRef.close({data:this.education});
       },

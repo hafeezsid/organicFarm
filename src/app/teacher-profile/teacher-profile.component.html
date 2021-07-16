@@ -8,18 +8,19 @@
                     <div class="card-title text-center">
                         <h5 class=" mt-3"> Teaching Subjects</h5>
                         <span class="text-muted text-center fs-xm-app">
-                            Note: Make sure you only add those subjects and topics are you 100% capable of teaching. Your application will be accepted based on supporting documents that you upload for added subjects. </span>
+                            Note: Make sure you only add subjects and topics that are you capable of teaching. Your application will be accepted based on supporting documents that you upload for added subjects. </span>
                     </div>
                     <div class="card-body">
                       
                             <div class="row">
                                 
                                     <div class="col-12 mt-4">
-                                        Subjects and Topics <span class="text-muted fs-xm-app">
-                                            Note: You can add atmost 5 subjects or topics</span>
+                                        Subjects and Topics <!--<span class="text-muted fs-xm-app">
+                                            Note: You can add atmost 5 subjects or topics</span>-->
                                     </div>
     
-                                    <div class="col-12" >
+                                   <!-- 
+                                       <div class="col-12" >
                                         <div class="row" >
                                             <div class="col-12 col-sm-5 mt-4">
                                                 <div class="form-group" >
@@ -57,12 +58,13 @@
                                         </div>
                                     
                                     </div> 
+                                   --> 
     
     
                                     <div class="col-12 mt-1" formArrayName="subjects">
                                         
                                         <div class="row" *ngFor="let lang of subjects.controls; let i=index" [formGroupName]="i">
-                                            <div class="col-12 col-sm-5 mt-3">
+                                            <div class="col-12 col-sm-5 mt-1">
                                                 <div class="form-group" >
                                                     <label for="sub-{{i}}" >Subjects or Topics</label>
                                                     <select id="sub-{{i}}" class="form-control form-select-sm " formControlName="subjectName"
@@ -73,7 +75,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="col-9 col-sm-5 mt-3">
+                                            <div class="col-9 col-sm-5 mt-1">
                                                 <div class="form-group">
                                                     <label for="level-{{i}}" >level</label>
                                                     <select id="level-{{i}}" class="form-control form-select-sm " formControlName="level"
@@ -95,7 +97,7 @@
                                                                     
                                                  </div>  
                                             </div>
-                                            <div class="col-1 mt-3">
+                                            <div class="col-1 mt-1">
                                                 <br>
                                                 <h1>
                                                     <a (click)="removeSubject(i)" >
@@ -105,7 +107,7 @@
                                             </div>
                                         </div>
     
-                                        <button type="button" class="btn btn-sm btn-app" (click)="addSubject('','')">Add</button>
+                                        <button type="button" class="btn btn-sm btn-app" (click)="addSubject(this.tutorSubject)">Add</button>
                                     </div> 
                                    
                                 
@@ -208,17 +210,21 @@
                                                    <p class="m-0"><span class="fs-sm-app">{{lang.value.educationInstitute}}</span></p>
                                                    <p class="m-0"><span class="fs-sm-app">Degree: {{lang.value.educationDegree}}</span>
                                                     <span class="fs-sm-app mx-2">Major: {{lang.value.educationMajor}}</span></p>
-                                                    <p *ngIf="lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
+                                                    <p *ngIf="lang.value.educationUploadStatus" class="m-0 text-capitalize text-success fw-bold">
                                                      <span class="fs-sm-app">Document Uploaded</span>
                                                 </p>
-                                                <p *ngIf="!lang.value.educationUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
+                                                <p *ngIf="!lang.value.educationUploadStatus" class="m-0 text-capitalize text-success fw-bold"> 
                                                     <span class="fs-sm-app">Document Not Uploaded</span>
                                            </p>
                                                
                                                     
                                             </div>
                                             <div class="col-3 col-sm-6">
-                                                <a><label><i class="bi bi-x text-danger fs-5"></i></label></a>
+                                                <h1>
+                                                    <a  (click)="removeEducation(i)" >
+                                                        <i class="bi bi-x text-danger"></i>
+                                                    </a>
+                                                </h1>
                                                
                                             </div>
                                             <hr>
@@ -242,19 +248,22 @@
                                                 </p>
                                                    <p class="m-0"><span class="fs-sm-app">{{lang.value.experienceCompany}}</span></p>
                                                    <p class="m-0"><span class="fs-sm-app">{{lang.value.experienceCity}}, {{lang.value.experienceState}}</span>
-                                                    <span class="fs-sm-app mx-1">
+                                                    <span class="fs-sm-app m-1">
                                                        {{lang.value.experienceCountry}}</span>
                                                     </p>
                                                  
                                             </div>
                                             <div class="col-3 col-sm-6">
-                                                <a><label><i class="bi bi-x text-danger fs-5"></i></label></a>
-                                               
+                                                <h1>
+                                                    <a  (click)="removeExperience(i)" >
+                                                        <i class="bi bi-x text-danger"></i>
+                                                    </a>
+                                                </h1>
                                             </div>
                                             <hr>
                                         </div>
 
-                                        <button class="btn btn-sm btn-app"  type="button"
+                                        <button  type="button" class="btn btn-sm btn-app" 
                                         style="width: fit-content;" (click)="openExperienceDialog()">
                                         Add</button>
                                 </div> 
@@ -272,21 +281,24 @@
                                                     </p>
                                                    <p class="m-0"><span class="fs-sm-app">{{lang.value.certificateName}}</span></p>
                                                    <p class="m-0"><span class="fs-sm-app">{{lang.value.certificateProvider}}</span></p>
-                                                    <p *ngIf="lang.value.certificateUploadStatus" class="m-0" class="text-capitalize text-success fw-bold">
+                                                    <p *ngIf="lang.value.certificateUploadStatus" class="m-0 text-capitalize text-success fw-bold">
                                                      <span class="fs-sm-app">Document Uploaded</span>
                                                      </p>
-                                                    <p *ngIf="!lang.value.certificateUploadStatus" class="m-0" class="text-capitalize text-success fw-bold"> 
+                                                    <p *ngIf="!lang.value.certificateUploadStatus" class="m-0 text-capitalize text-success fw-bold"> 
                                                         <span class="fs-sm-app">Document Not Uploaded</span>
                                                     </p>                                            
                                             </div>
                                             <div class="col-3 col-sm-6">
-                                                <a><label><i class="bi bi-x text-danger fs-5"></i></label></a>
-                                               
+                                                <h1>
+                                                    <a  (click)="removeCertificate(i)" >
+                                                        <i class="bi bi-x text-danger"></i>
+                                                    </a>
+                                                </h1>
                                             </div>
                                             <hr>
                                         </div>
 
-                                        <button class="btn btn-sm btn-app"  type="button"
+                                        <button   type="button" class="btn btn-sm btn-app"
                                         style="width: fit-content;" (click)="openCertificateDialog()">
                                         Add</button>
                                 </div>  

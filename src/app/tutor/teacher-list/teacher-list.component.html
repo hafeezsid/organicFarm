@@ -1,0 +1,12 @@
+<div class="tutor-list-section">
+<div class="row g-2">  
+    <div *ngFor="let tut of tutors" class="col-12 col-md-6">
+            <app-teacher-list-view  [tutor]="tut"></app-teacher-list-view>
+</div>
+</div>
+</div>
+
+<div class="row text-center m-3">
+    <div class="col-12"><button class="btn btn-app-outline" type="button" >View More</button></div>
+    
+</div>

@@ -37,6 +37,11 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ExperienceDialogComponent } from './appDialogs/experience-dialog/experience-dialog.component';
 import { CertificatesDialogComponent } from './appDialogs/certificates-dialog/certificates-dialog.component';
 import { AcknowledgmentComponent } from './acknowledgment/acknowledgment.component';
+import { TeacherListComponent } from './tutor/teacher-list/teacher-list.component';
+import { TeacherListViewComponent } from './tutor/teacher-list-view/teacher-list-view.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { TeacherDetailComponent } from './tutor/teacher-detail/teacher-detail.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -62,7 +67,11 @@ import { AcknowledgmentComponent } from './acknowledgment/acknowledgment.compone
     FileUploadComponent,
     ExperienceDialogComponent,
     CertificatesDialogComponent,
-    AcknowledgmentComponent
+    AcknowledgmentComponent,
+    TeacherListComponent,
+    TeacherListViewComponent,
+    TeacherDetailComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +86,8 @@ import { AcknowledgmentComponent } from './acknowledgment/acknowledgment.compone
     MatSidenavModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
   ],
   providers: [/*{provide: ErrorHandler, useClass: GlobalErrorHandler},*/
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

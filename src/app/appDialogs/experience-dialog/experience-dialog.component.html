@@ -72,7 +72,7 @@
 <div mat-dialog-actions>
   <button type="button" class="btn btn-sm btn-secondary " (click)="onNoClick()">Cancel</button>
   <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
-  <button class="btn btn-sm btn-app mx-2" [disabled]="experienceFormGroup.invalid || submitted">
+  <button type="submit" class="btn btn-sm btn-app mx-2" [disabled]="experienceFormGroup.invalid || submitted">
     <span *ngIf="submitted" class="spinner-border spinner-border-sm" 
     role="status" aria-hidden="true"></span>Submit</button>
 </div>
