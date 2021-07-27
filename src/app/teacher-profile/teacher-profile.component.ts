@@ -29,7 +29,7 @@ export class TeacherProfileComponent implements OnInit {
   education: Education;
   experience:Experience;
   certificate:Certificate;
-  teachingInfo:TutorProfileInfo=new TutorProfileInfo();
+  teachingInfo:TutorProfileInfo;
   attachedFile:File;
   onlyNumberRegex='/^[0-9]*$/';
   tutorSubjectList:TutorSubject[];
@@ -365,6 +365,9 @@ this.tutorService.fetchTeachingInfo().subscribe(
     return;
   }
   this.tutorSubjectList=[];
+  if(this.teachingInfo==null){
+    this.teachingInfo=new TutorProfileInfo();
+  }
   this.teachingInfo.hourlyRate=this.getControlValue('hourlyRate').value;
   this.teachingInfo.aboutMe=this.getControlValue('aboutMe').value;
   this.teachingInfo.aboutTeachingExp=this.getControlValue('aboutTeachingExp').value;

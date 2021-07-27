@@ -15,6 +15,7 @@ import { AdminMainComponent } from './system_admin/admin-main/admin-main.compone
 import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
 import { TeacherDetailComponent } from './tutor/teacher-detail/teacher-detail.component';
 import { TeacherListComponent } from './tutor/teacher-list/teacher-list.component';
+import { TutorDashboardMainComponent } from './tutor/tutor-dashboard-main/tutor-dashboard-main.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
 {path:'register/final',component:AcknowledgmentComponent},
 {path:'tutor/search',component:TeacherListComponent},
 {path:'tutor/:tutorId/details',component:TeacherDetailComponent},
+{path:'tutor/dashboard',component:TutorDashboardMainComponent},
 {path:'logout',component:LogoutComponent},
 {path:'admin',component:AdminMainComponent,canActivate:[AuthGuard]},
 {path:'productListing',component:ProductListingComponent},

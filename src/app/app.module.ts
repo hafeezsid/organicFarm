@@ -42,6 +42,8 @@ import { TeacherListViewComponent } from './tutor/teacher-list-view/teacher-list
 import {MatTabsModule} from '@angular/material/tabs';
 import { TeacherDetailComponent } from './tutor/teacher-detail/teacher-detail.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { TutorDashboardMainComponent } from './tutor/tutor-dashboard-main/tutor-dashboard-main.component';
+import { TimeSlotDialogComponent } from './appDialogs/time-slot-dialog/time-slot-dialog.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     TeacherListComponent,
     TeacherListViewComponent,
     TeacherDetailComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    TutorDashboardMainComponent,
+    TimeSlotDialogComponent
   ],
   imports: [
     BrowserModule,

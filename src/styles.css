@@ -13,16 +13,10 @@ html, body {
     font-size: large;
 }
 
-.btn-app{
-    background-color: #ff9005 !important;
-    border-radius: 2px;
-    color: #ffff !important;
-    width: fit-content;
+p{
+    font-size: 14px;
+}
 
-}
-.btn-app:hover{
-    background-color: #d17400 !important;
-}
 
 .fs-lg-app{
     font-size: 14px !important;
@@ -41,6 +35,38 @@ html, body {
     
     font-size: 12px !important;
 }
+
+.btn-app-home{
+    background-color: #EE5522 !important;
+    border-radius: 2px;
+    color: #ffff !important;
+    width: fit-content;
+
+}
+.btn-app-home:hover{
+    background-color: #ff9005 !important;
+}
+
+
+.btn-app-home:focus
+ {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #EE5522 !important;
+    background-color: #EE5522 !important; ;
+  }
+
+.btn-app{
+    background-color: #ff9005 !important;
+    border-radius: 2px;
+    color: #ffff !important;
+    width: fit-content;
+
+}
+.btn-app:hover{
+    background-color: #d17400 !important;
+}
+
 
 .btn-app:active {
     background-color: #d17400 !important; ;
@@ -72,15 +98,15 @@ a{
 }
 
 .btn-app-outline{
-    border-color: #ff9b1f !important;
+    border-color: #EE5522 !important;
     border: 2px solid ;
-    color: #ff9b1f !important;
+    color: #EE5522 !important;
     font-weight: 500 !;
 
 }
 
 .btn-app-outline:hover{
-background-color: #ff9b1f !important;
+background-color: #EE5522 !important;
 color: #fff !important;
 
 }
@@ -94,7 +120,7 @@ background-color: #d17400 !important; ;
 {
 outline: none !important;
 box-shadow: none !important;
-border-color: #ff9b1f !important;
+border-color: #EE5522 !important;
 }  
 
 .btn-app-outline-dark{
@@ -115,8 +141,31 @@ border-color: #ff9b1f !important;
     display: inline-flex;justify-content: space-between; width: 100%;
 }
 
+.success-text{
+    border-radius: 4px;
+    border: 1px solid green;
+    color:green !important
+}
+
+.failure-text{
+    border-radius: 4px;
+    border: 1px solid red;
+    color:red !important
+}
+
+
+.timeSlotDialog{
+    background: white;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 @media screen and (max-width: 576px) {
-	
+	.img-container{
+        width: 70px !important;
+        height: 70px !important;  
+        padding: 2px 4px;    
+    }
 .btn-app{
     background-color: #ff9005 !important;
     border-radius: 2px;

@@ -19,8 +19,8 @@ export class TeacherListViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.aWishList=true;
-    this.showSubjects=true;
-    this.showAboutMe=false;
+    this.showSubjects=false;
+    this.showAboutMe=true;
 
     this.receivedImage='data:image/jpeg;base64,' + this.tutor.profilePicByte;
   }

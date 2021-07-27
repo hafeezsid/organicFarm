@@ -18,6 +18,9 @@ export class TopHeaderComponent implements OnInit {
   loginStatus$: Observable<boolean>;
   user$:Observable<User>;
   role:string;
+
+  sticky: boolean = false;
+  elementPosition: any;
   constructor(private tokenService:TokenService,private authService:AuthenticationService) {
     this.loginStatus$=this.authService.getLoginStatus().asObservable();
     this.loginStatus$.subscribe(state=>{
@@ -49,16 +52,18 @@ export class TopHeaderComponent implements OnInit {
      }
    )
   }
+  ngAfterViewInit(){
+    this.elementPosition = this.navbar.nativeElement.offsetTop;
+  }
 
-  /*@HostListener('window:scroll', ['$event']) // for window scroll events
-  onScroll(event) {
-    console.log("Scroll Event");
-    var sticky=this.navbar.nativeElement.offsetTop;
-    if (window.pageYOffset >= sticky) {
-      this.navbar.nativeElement.classList.add("sticky")
+  @HostListener('window:scroll', ['$event'])
+  handleScroll(){
+    const windowScroll = window.pageYOffset;
+    if(windowScroll >= this.elementPosition){
+      this.sticky = true;
     } else {
-      this.navbar.nativeElement.classList.remove("sticky");
+      this.sticky = false;
     }
-  }*/
+  }
 
 }

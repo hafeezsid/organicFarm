@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     else{
+      this.user.userType='tutor';
       this.authService.register(this.user).subscribe(
         res=>{
           console.log(res);

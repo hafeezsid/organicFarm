@@ -1,0 +1,14 @@
+.del-icon{
+    display: inline-flex;
+    direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.add-link a{
+color: #ff9b1f;
+text-decoration: underline;
+}
+
+.del-icon a i{
+font-size: 25px;
+}

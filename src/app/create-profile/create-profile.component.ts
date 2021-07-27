@@ -31,8 +31,6 @@ export class CreateProfileComponent implements OnInit {
     this.generateYear();
     this.generateMonth();
     this.generateDay();
-
-
     this.user=authService.currentUserValue;
     this.personalInfo=new TutorPersonalInfo();
     this.profileForm=this.fb.group({
@@ -171,7 +169,10 @@ submitPersonalInfo()
     this.snackService.showErrorSnack("Please add at least one langauge");
     return;
 }
-
+if(this.personalInfo==null)
+{
+  this.personalInfo=new TutorPersonalInfo();
+}
 this.personalInfo.displayName=this.getControlValue('displayName').value;
 this.personalInfo.gender=this.getControlValue('gender').value;
 this.personalInfo.fromCountry=this.getControlValue('fromCountry').value;

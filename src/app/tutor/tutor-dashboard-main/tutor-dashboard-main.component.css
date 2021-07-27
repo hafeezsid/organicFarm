@@ -1,0 +1,32 @@
+.time-select{
+    display:inline-flex;
+}
+.card-header{
+    background: cornflowerblue;
+    border-radius: 5px;
+    color: white;
+
+}
+.card-content .col-4{
+    width: fit-content;
+}
+
+.card-content a{
+    font-size: 14px;
+    
+}
+
+.card-content .col-2{
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+span {
+    font-size: 14px;
+}
+
+.card-content h1 a {
+    font-size: 22px;
+}

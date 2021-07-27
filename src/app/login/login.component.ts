@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { LocalstorageService } from '../localstorage.service';
+import { MatSnackService } from '../services/mat-snack.service';
 import { TokenService } from '../token.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService:AuthenticationService, 
     private route:Router,private tokenService:TokenService,
-    private lsSerivice:LocalstorageService) { }
+    private lsSerivice:LocalstorageService,private snackService:MatSnackService) { }
 
   ngOnInit(): void {
   }
@@ -31,10 +32,14 @@ export class LoginComponent implements OnInit {
       res=>{
         console.log(res);
         this.showSpinner=false;
-        this.route.navigate(['/register/step1']);
+        if(res?.user?.isProfileApproved)
+          this.route.navigate(['/tutor/dashboard']);
+        else
+          this.route.navigate(['/register/step1']);
       },
       (error)=>{
         console.log(error)
+        this.snackService.showErrorSnack("Incorrect username/email or password");
         this.showSpinner=false;
       }
     )
